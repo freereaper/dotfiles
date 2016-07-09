@@ -1,0 +1,80 @@
+#! /bin/sh
+
+sxhkd &
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+# Take note:
+# If the computer is already running with just its default monitor, then you
+# wanna plug in an external monitor to use with bspwm, you must first use xrandr
+# to output to that external monitor first. For example we plugin a HDMI
+# monitor. First:
+#   xrandr --output HDMI1 --mode 1920x1080
+# then run:
+#   ~/.config/bspwm/bspwmrc
+num_mon=$(bspc query -M | wc -l)
+if [ $num_mon -gt 1 ] ; then
+
+    # for Acer Aspire V11 Touch
+    # xrandr --output eDP1 --primary
+    # xrandr --output HDMI1 --mode 1920x1080 --left-of eDP1
+
+    # for HP Pavilion dm3 laptop
+    # xrandr --output LVDS1 --primary
+    # xrandr --output VGA1 --mode 1920x1080 --left-of LVDS1
+
+    # for VirtualBox at work
+    xrandr --output VGA-0 --primary
+    # xrandr --output VGA-1 --mode 1920x1016 --right-of VGA-0
+    xrandr --output VGA-1 --right-of VGA-0
+
+    # first native monitor
+    bspc monitor ^1 --reset-desktops 1
+    bspc config -m ^1 top_padding 10
+
+    # external monitor exists, so we prefer to use it instead of the native
+    # small size monitor
+    bspc monitor ^2 --reset-desktops 2 web 4 5 6 7 8 9 10
+    bspc config -m ^2 top_padding 10
+else
+    if [[ -e $TLPC ]]; then
+        xrandr --output HDMI-0 --primary
+        xrandr --output VGA-0 --right-of HDMI-0
+        bspc monitor ^1 --reset-desktops 1
+        bspc config -m ^1 top_padding 10
+
+        bspc monitor ^2 --reset-desktops 2 web 4 5 6 7 8 9 10
+        bspc config -m ^2 top_padding 10
+    else
+        bspc monitor ^1 --reset-desktops 1 2 web 4 5 6 7 8 9 10
+        bspc config -m ^1 top_padding 10
+    fi
+fi
+
+
+bspc config top_padding 0
+bspc config auto_cancel true
+#bspc conifg normal_border_color	 	none
+bspc config active_border_color		"#504339"
+bspc config focused_border_color	 "#77dd77"
+
+bspc config border_width        2
+bspc config window_gap          8
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_by_distance    true
+bspc config history_aware_focus  true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a chromium-browser desktop='^6'
+bspc rule -a firefox desktop='^5' state=fullscreen
+bspc rule -a remmina desktop='^9'
+
+
+bspc rule -a p4v desktop='^4'
+bspc rule -a "p4v.bin" desktop='^4'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off

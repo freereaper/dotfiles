@@ -1,0 +1,178 @@
+"===============================================================================
+" https://github.com/freereaper/dotfiles
+" Minimal setup for vim
+"
+" The purpose of this file is to configure vim to work with general text file
+" such that it doesn't change the format of the text (like: remove trailing
+" white space, change tab to space, ...)
+" So that, we can use this Vim's configuration file to work with other projects
+" which contains non-standard text format ("Death to the Space Infidels!" -
+" Coding Horror)
+"===============================================================================
+
+
+"===============================================================================
+	if (g:iswindows && g:isGUI)
+		source $VIMRUNTIME/vimrc_example.vim
+		source $VIMRUNTIME/mswin.vim
+		behave mswin
+		source $VIMRUNTIME/delmenu.vim
+		source $VIMRUNTIME/menu.vim
+		language messages zh_CN.utf-8
+	endif
+
+" disable compatibility to vi because it's annoying.
+" compatibility with vi make `imap jk <ESC>` doesn't work
+set nocompatible
+
+imap jk <ESC>
+
+filetype plugin on
+
+" set line number
+set nu
+
+"display status bar at the bottom which shows file name and cursor position
+set laststatus=2
+
+"display title bar of the current vim window
+set title
+
+syntax on
+
+" Rebind <Leader> key. when you pressed the Leader key, the cursor
+" will wait for 1s for user to press another key
+let mapleader = ","
+
+" highlight tab and trailing space
+set listchars=tab:>-,trail:-
+set list
+" use F11 to toggle between displaying white space or not
+noremap <F10> :set list!<CR>
+
+" allow to swap buffers even the opened buffer is modified
+set hidden
+
+set showcmd
+set shortmess=atI
+
+" set default split direction
+set splitright
+set splitbelow
+
+" use Ctrl + l to redraw the screen and remove any search highlighs
+" nnoremap <silent> <C-l> :nohl<CR><C-l>
+nmap <silent> ihs :set invhlsearch<CR>
+
+" toggling cursorline highlight when switching on/off insert mode
+" autocmd InsertEnter,InsertLeave * set cul!
+" or:
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+
+" make search case insensitive
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" disable backup and swap files - they trigger too many events
+" for file system watchers, we have Git!
+set nobackup
+set nowritebackup
+set noswapfile
+
+
+" Use F5 to refresh the current buffer if it's changed outside Vim
+map <F5> :checktime<CR>
+
+" auto reload the file if it's changed
+set autoread
+au CursorHold * checktime
+
+" use Ctrl+d to move the cursor to bottom, then bring that bottom line to middle
+" of screen
+noremap <silent> <C-d> <S-l>zz
+
+" use Ctrl+u to move the cursor to top of the page, then bring that top line
+" to middle of screen
+noremap <silent> <C-u> <S-h>zz
+
+" enable suggestion of available of commands in commands mode, so that we can
+" use arrow keys (or Ctrl+n and Ctrl+p) to choose a desire command form the list
+" Active the wildmenu by entering command mode (:) then type in the first few
+" character and then press Tab
+set wildmenu
+
+"easier moving of code blocks for indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" set autoindent
+set ai
+"===============================================================================
+
+"===============================================================================
+"---begin markdown {{{
+" below section need to be at the bottom of the file, or else the auto bullet in
+" markdown will not work
+
+" Set *.md file to be markdown filetype instead of modula2 as default
+autocmd BufRead,BufNew,BufNewFile *.md set filetype=markdown
+
+" http://stackoverflow.com/questions/19211839/markdown-lists-in-vim
+autocmd Filetype markdown setlocal com=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,b:-,b:+ | set formatoptions+=tcroqln
+
+" make markdown auto insert list with 1. when possible
+autocmd Filetype markdown setlocal com+=b:1.
+"---end markdown }}}
+"===============================================================================
+
+
+"===============================================================================
+" -----------------------------------------------------------------------------
+"  gvimfullscreen, need gvimfullscreen.dll
+"  F11 enter fullscreen or exit
+" -----------------------------------------------------------------------------
+if (g:iswindows && g:isGUI)
+	map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+endif
+
+" -----------------------------------------------------------------------------
+"  vimtweak, need vimtweak.dll
+"  Ctrl + Up increase the transparent，Ctrl + Down decrease the transparent
+"  <Leader>t toggle top
+" -----------------------------------------------------------------------------
+au! GUIEnter * call libcallnr("vimtweak.dll","SetAlpha", 230)
+if (g:iswindows && g:isGUI)
+	let g:Current_Alpha = 180
+	let g:Top_Most = 0
+	func! Alpha_add()
+		let g:Current_Alpha = g:Current_Alpha + 10
+		if g:Current_Alpha > 255
+			let g:Current_Alpha = 255
+		endif
+		call libcallnr("vimtweak.dll","SetAlpha",g:Current_Alpha)
+	endfunc
+	func! Alpha_sub()
+		let g:Current_Alpha = g:Current_Alpha - 10
+		if g:Current_Alpha < 155
+			let g:Current_Alpha = 155
+		endif
+		call libcallnr("vimtweak.dll","SetAlpha",g:Current_Alpha)
+	endfunc
+	func! Top_window()
+		if  g:Top_Most == 0
+			call libcallnr("vimtweak.dll","EnableTopMost",1)
+			let g:Top_Most = 1
+		else
+			call libcallnr("vimtweak.dll","EnableTopMost",0)
+			let g:Top_Most = 0
+		endif
+	endfunc
+
+	map <c-up> :call Alpha_add()<CR>
+	map <c-down> :call Alpha_sub()<CR>
+	map <leader>t :call Top_window()<CR>
+endif
+"===============================================================================
