@@ -326,7 +326,7 @@ endif
 	let g:cscope_auto_connect_db = 1
 	let g:cscope_search_case_insensitive = 1
 	let g:cscope_split_threshold = 12000
-	let g:cscope_interested_files = '\.c$\|\.cpp$\|\.h$\|\.hpp$'
+	let g:cscope_interested_files = '\.c$\|\.cpp$\|\.s$\|\.S$\|\.h$\|\.hpp$'
 	let g:cscope_vim_open_location_list = 0
 	let g:cscope_auto_update = 0
 
