@@ -1,0 +1,106 @@
+! Run: `xrdb -merge ~/.Xresources` after modify this file
+
+! font stuffs
+Xft.autohint: true
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: true
+Xft.antialias: true
+Xft.rgba: rgb
+
+Xcursor.theme: Pulse-Glass
+Xcursor.size:  22
+
+
+URxvt.saveLines:1000000
+URxvt.geometry:100x30
+URxvt.depth:32
+URxvt.background:#1C1C1C
+URxvt.foreground:white
+
+
+! URxvt*font: xft:UbuntuMono-R:pixelsize=16
+! URxvt*boldFont: xft:UbuntuMono-B:pixelsize=16
+
+! URxvt.font:xft:Droid Sans Mono for Powerline:pixelsize=13:antialias=true:hinting=true:Regular
+! URxvt.boldFont:xft:Droid Sans Mono for Powerline:pixelsize=13:Bold
+
+URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true
+URxvt.boldFont:xft:Ubuntu Mono derivative Powerline:bold:pixelsize=16:antialias=true:hinting=true
+
+URxvt.inheritPixmap:false
+URxvt.xftAntialias:true
+URxvt.transparent:true
+URxvt.shading:85
+URxvt.tintColor:black
+URxvt.fading:20
+URxvt.fadeColor: #453e40
+! URxvt.perl-ext-common:default,clipboard,matcher,tabbed
+URxvt.perl-ext-common:default,matcher,selection-to-clipboard
+URxvt.url-launcher:/usr/bin/firefox
+URxvt.matcher.button:1
+URxvt.scrollBar:false
+! fix problem with color in tmux plugin from oh-my-zsh,
+! maybe: rxvt-unicode-256color
+URxvt.termName:rxvt-256color
+! URxvt.tabbed.tabbar-fg: 15
+! URxvt.tabbed.tabbar-bg: 0
+! URxvt.tabbed.tab-fg: 11
+! URxvt.tabbed.tab-bg: 8
+! URxvt.tabbed.autohide: yes
+URxvt.visualBell: false
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyKeypress: true
+
+
+! not working yet
+! disable for Ctrl+Shift+c/v for copy and paste
+URxvt.iso14755:false
+URxvt.iso14755_52:false
+URxvt.keysym.C-C: perl:clipboard:copy
+URxvt.keysym.C-V: perl:clipboard:paste
+URxvt.keysym.C-A-V: perl:clipboard:paste_escaped
+
+
+! Use Ctrl+[0..9] to select window in tmux
+! http://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux
+URxvt.keysym.C-1: \033[27;5;49~
+URxvt.keysym.C-2: \033[27;5;50~
+URxvt.keysym.C-3: \033[27;5;51~
+URxvt.keysym.C-4: \033[27;5;52~
+URxvt.keysym.C-5: \033[27;5;53~
+URxvt.keysym.C-6: \033[27;5;54~
+URxvt.keysym.C-7: \033[27;5;55~
+URxvt.keysym.C-8: \033[27;5;56~
+URxvt.keysym.C-9: \033[27;5;57~
+URxvt.keysym.C-0: \033[27;5;48~
+
+
+! make letters stay closer to each other, work well with font Dejavu Sans Mono for Powerline
+! at pixelsize=12 or size=9
+! Note: letterSpace:-1 will fix the folk icon of vim-airline but then the spacing is
+! a bit wide, so we scarify the folk icon for the look of the content by setting
+! it to -2
+URxvt.letterSpace: -1
+
+! To check the default color, see: `man urxvt` section `COLOURS AND GRAPHICS`
+! black
+! URxvt.color0:  #000000
+! #1C1C1C: similar to ctermfg=234 of vim
+URxvt.color0:  #1C1C1C
+URxvt.color8:  #555753
+
+! yellow
+URxvt.color3:  #dd5608
+URxvt.color11: #dd6a1c
+
+! blue
+URxvt.color4:  RoyalBlue
+URxvt.color12: RoyalBlue
+
+URxvt.cursorBlink: 0
+URxvt.cursorUnderline: 0
+
+ssh-askpass*background: #000000
+

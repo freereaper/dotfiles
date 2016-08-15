@@ -1,0 +1,8 @@
+*.o
+**.cmd
+**.doc
+tags
+.git/
+/log
+/tmp
+/vendor
