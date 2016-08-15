@@ -46,8 +46,7 @@ let s:settings.colorscheme = 'solarized'
     call plug#begin('$VIM/vimfiles/bundle')
 	endif
 
-	Plug 'gmarik/vundle'
-	Plug 'a.vim'
+	Plug 'a.vim', { 'for': [ 'c', 'h', 'cpp' ] }
 	Plug 'taglist.vim'
 
 	Plug 'vim-airline/vim-airline'
