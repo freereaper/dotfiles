@@ -1,4 +1,4 @@
-" env cfg {
+" os detect {{{
 let g:iswindows = 0
 let g:islinux = 0
 let g:isGUI = 0
@@ -17,73 +17,86 @@ else
 	source ~/.vimrc-mini
 endif
 
-"} /* end of env cfg */
+" }}} /* end of os detect */
 
-"Vundle cfg {
-	" ----------------------------------------------------------
-	"  Vundle plugin manager
-	" --------------------------------------------------------------
-	"help:h vundle
-	" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-	" ------------------------------------------------------------------
+" dotvim settings {{{
+
+let s:settings = {}
+let s:settings.default_indent = 2
+let s:settings.max_column = 120
+let s:settings.autocomplete_method = 'ycm'
+let s:settings.enable_cursorcolumn = 0
+let s:settings.colorscheme = 'solarized'
+
+" }}}
+
+" plug cfg {{{
+	" ---------------------------------------------------------------------
+	"  vim-plugin manager
+	" ---------------------------------------------------------------------
+	" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  "  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	" ---------------------------------------------------------------------
 
 	set nocompatible
-	filetype off
 
 	if g:islinux
-		set rtp+=~/.vim/bundle/vundle/
-			call vundle#rc()
+    call plug#begin('~/.vim/bundle')
 	else
-			" where is the vundle
-		set rtp+=$VIM/vimfiles/bundle/vundle/
-			" path the plugin install
-		call vundle#rc('$VIM/vimfiles/bundle/')
+    call plug#begin('$VIM/vimfiles/bundle')
 	endif
 
-	Bundle 'gmarik/vundle'
-	Bundle 'a.vim'
-	Bundle 'taglist.vim'
+	Plug 'gmarik/vundle'
+	Plug 'a.vim'
+	Plug 'taglist.vim'
 
-	Bundle 'vim-airline/vim-airline'
-	Bundle 'vim-airline/vim-airline-themes'
-	Bundle 'tpope/vim-fugitive'
-	Bundle 'airblade/vim-gitgutter'
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	Plug 'tpope/vim-fugitive'
+	Plug 'airblade/vim-gitgutter'
 
-	Bundle 'DoxygenToolkit.vim'
-	Bundle 'altercation/vim-colors-solarized'
-	Bundle 'tomasr/molokai'
-	Bundle 'morhetz/gruvbox'
-	Bundle 'dracula/vim'
-	Bundle 'The-NERD-tree'
-	Bundle 'The-NERD-commenter'
+	Plug 'DoxygenToolkit.vim'
 
-	Bundle 'rking/ag.vim'
-	Bundle 'freereaper/ctrlsf.vim'
-	Bundle 'shougo/unite.vim'
-	Bundle 'terryma/vim-multiple-cursors'
-	Bundle 'bronson/vim-trailing-whitespace'
+	Plug 'altercation/vim-colors-solarized'
+	Plug 'tomasr/molokai'
+	Plug 'morhetz/gruvbox'
+	Plug 'dracula/vim'
+  Plug 'chriskempson/vim-tomorrow-theme'
+
+	Plug 'The-NERD-tree'
+	Plug 'The-NERD-commenter'
+
+	Plug 'rking/ag.vim'
+	Plug 'freereaper/ctrlsf.vim'
+	Plug 'shougo/unite.vim'
+	Plug 'terryma/vim-multiple-cursors'
+	Plug 'bronson/vim-trailing-whitespace'
 
 	"windows install YCM too complictated
-	Bundle 'Valloric/YouCompleteMe'
-	"Bundle 'rdnetto/YCM-Generator'
-	Bundle 'Valloric/ListToggle'
+	Plug 'Valloric/YouCompleteMe'
+	"plug 'rdnetto/YCM-Generator'
+	Plug 'Valloric/ListToggle'
 
-	"Bundle 'Shougo/neocomplete'
-	"Bundle 'OmniCppComplete'
-	Bundle 'scrooloose/syntastic'
-	Bundle 'ultisnips'
+	"plug 'Shougo/neocomplete'
+	"plug 'OmniCppComplete'
+	Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
+	Plug 'ultisnips'
 
-	Bundle 'ctrlp.vim'
-	"Bundle 'mru.vim'
-	Bundle 'YankRing.vim'
-	Bundle 'Lokaltog/vim-easymotion'
-	Bundle 'godlygeek/tabular'
-	Bundle 'plasticboy/vim-markdown'
+	Plug 'ctrlp.vim'
+	"plug 'mru.vim'
+	Plug 'YankRing.vim'
+	Plug 'Lokaltog/vim-easymotion'
+	Plug 'godlygeek/tabular'
+	Plug 'plasticboy/vim-markdown'
 	"not suitable
-	"Bundle 'airblade/vim-gitgutter'
-	Bundle 'freereaper/cscope.vim'
-	Bundle 'christoomey/vim-tmux-navigator'
-"} /* end  of vundle cfg */
+	"Plug 'airblade/vim-gitgutter'
+	Plug 'freereaper/cscope.vim'
+	Plug 'christoomey/vim-tmux-navigator'
+	Plug 'junegunn/goyo.vim'
+	Plug 'junegunn/limelight.vim'
+
+  call plug#end()
+" }}} /* end  of vundle cfg */
 
 
 "------------------------------------------------------------------------------
@@ -499,6 +512,8 @@ endif
 
 	let g:airline#extensions#tabline#enabled = 1
 
+	let g:airline#extensions#syntastic#enabled = 0
+
 	let g:airline#extensions#tabline#buffer_idx_mode = 1
 	nmap <leader>1 <Plug>AirlineSelectTab1
 	nmap <leader>2 <Plug>AirlineSelectTab2
@@ -529,4 +544,43 @@ let g:ycm_filetype_blacklist = {
 			\}
 
 "} /* end of YCM cfg */
+"------------------------------------------------------------------------------
+
+
+"------------------------------------------------------------------------------
+" limelight.vim + Goyo.vim cfg {{{
+	let g:limelight_conceal_ctermfg = 240
+	let g:limelight_paragraph_span = 1
+	let g:limelight_priority = -1
+
+	function! s:goyo_enter()
+		if g:isGUI
+			set fullscreen
+			set background=light
+			set linespace=7
+		elseif exists('$TMUX')
+			silent !tmux set status off
+		endif
+		"hi NonText ctermfg=101
+		Limelight
+	endfunction
+
+
+	function! s:goyo_leave()
+		if g:isGUI
+			set nofullscreen
+			set background=dark
+			set linespace=0
+		elseif exists('$TMUX')
+			silent !tmux set status on
+		endif
+		"hi NonText ctermfg=101
+		Limelight!
+	endfunction
+
+	autocmd! User GoyoEnter nested call <SID>goyo_enter()
+	autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+	nnoremap <Leader>G :Goyo<CR>
+" }}} /* end of Goyo cfg */
 "------------------------------------------------------------------------------
