@@ -26,7 +26,8 @@ let s:settings.default_indent = 2
 let s:settings.max_column = 120
 let s:settings.autocomplete_method = 'ycm'
 let s:settings.enable_cursorcolumn = 0
-let s:settings.colorscheme = 'solarized'
+let s:settings.colorscheme = 'Tomorrow-Night-Eighties'
+let s:settings.airtheme = 'tomorrow'
 
 " }}}
 
@@ -107,29 +108,40 @@ let s:settings.colorscheme = 'solarized'
 
 	syntax on
 	syntax enable
+
+	" fix background color of nontext area seems not ringt in vim under tmux
+	if !g:isGUI
+		set t_ut=
+	endif
 "} /* end of general cfg */
 "------------------------------------------------------------------------------
 
-"------------------------------------------------------------------------------
-" solarized cfg {
-	let g:solarized_termtrans=1
-	let g:solarized_contrast="high"
-	let g:solarized_visibility="high"
-	let g:solarized_termcolors = 256
-	set background=dark
-	colorscheme solarized
-"} /* end of solarized cfg */
-"------------------------------------------------------------------------------
-
 
 "------------------------------------------------------------------------------
-" molokai cfg {
-	let g:molokai_original = 1
-	let g:rehash256 = 1
-	"colorscheme molokai
-"} /* end of molokai cfg */
-"------------------------------------------------------------------------------
+" colors cfg {{{
 
+	"******************************************************************
+	" solarized cfg {
+		let g:solarized_termtrans=1
+		let g:solarized_contrast="high"
+		let g:solarized_visibility="high"
+		let g:solarized_termcolors = 256
+		set background=dark
+	"	colorscheme solarized
+	"} /* end of solarized cfg */
+	"*******************************************************************
+
+
+	"*******************************************************************
+	" molokai cfg {
+		let g:molokai_original = 1
+		let g:rehash256 = 1
+		"colorscheme molokai
+	"} /* end of molokai cfg */
+	"*******************************************************************
+	
+	exec 'colorscheme '.s:settings.colorscheme
+	"------------------------------------------------------------------------------
 
 "------------------------------------------------------------------------------
 "dracula-theme cfg {
@@ -489,7 +501,7 @@ let s:settings.colorscheme = 'solarized'
 
 "------------------------------------------------------------------------------
 " airline cfg {
-	let g:airline_theme="solarized"
+	let g:airline_theme = s:settings.airtheme
 
 	let g:airline_powerline_fonts = 1
 
@@ -531,7 +543,7 @@ let s:settings.colorscheme = 'solarized'
 
 
 "------------------------------------------------------------------------------
-" YCM cfg {
+" YCM cfg {{{
 let g:ycm_global_ycm_extra_conf = "/home/reaper/.vim/.ycm_extra_conf_global.py"
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_filetype_blacklist = {
@@ -542,20 +554,21 @@ let g:ycm_filetype_blacklist = {
 			\ 'text' : 1
 			\}
 
-"} /* end of YCM cfg */
+" }}} /* end of YCM cfg */
 "------------------------------------------------------------------------------
 
 
 "------------------------------------------------------------------------------
 " limelight.vim + Goyo.vim cfg {{{
-	let g:limelight_conceal_ctermfg = 240
+  let g:limelight_conceal_ctermfg = 240
+	let g:limelight_conceal_guifg = '#777777'
 	let g:limelight_paragraph_span = 1
 	let g:limelight_priority = -1
 
 	function! s:goyo_enter()
 		if g:isGUI
-			set fullscreen
-			set background=light
+			"set fullscreen
+			"set background=light
 			set linespace=7
 		elseif exists('$TMUX')
 			silent !tmux set status off
@@ -567,14 +580,15 @@ let g:ycm_filetype_blacklist = {
 
 	function! s:goyo_leave()
 		if g:isGUI
-			set nofullscreen
-			set background=dark
+			"set nofullscreen
+			"set background=dark
 			set linespace=0
 		elseif exists('$TMUX')
 			silent !tmux set status on
 		endif
 		"hi NonText ctermfg=101
 		Limelight!
+    exec 'colorscheme '.s:settings.colorscheme
 	endfunction
 
 	autocmd! User GoyoEnter nested call <SID>goyo_enter()
