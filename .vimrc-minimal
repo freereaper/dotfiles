@@ -40,6 +40,11 @@ set title
 
 syntax on
 
+set lazyredraw
+
+" Keep the cursor on the same column
+set nostartofline
+
 " Rebind <Leader> key. when you pressed the Leader key, the cursor
 " will wait for 1s for user to press another key
 let mapleader = ","
@@ -48,7 +53,7 @@ let mapleader = ","
 set listchars=tab:>-,trail:-
 set list
 " use F11 to toggle between displaying white space or not
-noremap <F10> :set list!<CR>
+noremap <F11> :set list!<CR>
 
 " allow to swap buffers even the opened buffer is modified
 set hidden
@@ -110,6 +115,17 @@ vnoremap > >gv
 
 " set autoindent
 set ai
+
+" set formatoptions and breakindent
+set formatoptions+=1
+if has('patch-7.3.541')
+  set formatoptions+=j
+endif
+if has('patch-7.4.338')
+  let &showbreak = '↳ '
+  set breakindent
+  set breakindentopt=sbr
+endif
 "===============================================================================
 
 "===============================================================================

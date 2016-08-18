@@ -70,7 +70,7 @@ let s:settings.airtheme = 'tomorrow'
 	Plug 'freereaper/ctrlsf.vim'
 	Plug 'shougo/unite.vim'
 	Plug 'terryma/vim-multiple-cursors'
-	Plug 'bronson/vim-trailing-whitespace'
+  "Plug 'ntpeters/vim-better-whitespace'
 
 	"windows install YCM too complictated
 	Plug 'Valloric/YouCompleteMe'

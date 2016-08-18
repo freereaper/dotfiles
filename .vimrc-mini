@@ -156,8 +156,8 @@ nnoremap <leader>x :Copen<CR>:wincmd L<CR>
 " use Shift+q to format a paragraph to do wrapping at 80 chars
 " commented out on 2015-04-02 to make it automatically join short lines
 " together: " set formatoptions+=w
-set tw=80
-set colorcolumn=+1 "set color for column at 81
+set textwidth=0
+set colorcolumn=80 "set color for column at 81
 "hi ColorColumn guibg=#3E3F36 ctermbg=236
 hi ColorColumn ctermbg=236
 nnoremap Q gqip
@@ -422,6 +422,44 @@ endfunc
 " So that we can scroll up/down when the screen is filled up by command output
 " For example `:Source for` command in vim-fireplace
 set more
+
+
+" ==============================================================================
+" Zoom
+function! s:zoom()
+  if winnr('$') > 1
+    tab split
+  elseif len(filter(map(range(tabpagenr('$')), 'tabpagebuflist(v:val + 1)'),
+                  \ 'index(v:val, '.bufnr('').') >= 0')) > 1
+    tabclose
+  endif
+endfunction
+nnoremap <silent> <leader>z :call <sid>zoom()<cr>
+" ==============================================================================
+
+
+" ==============================================================================
+" Todo
+" ----------------------------------------------------------------------------
+function! s:todo() abort
+  let entries = []
+  for cmd in ['grep -rn -e TODO -e FIXME -e XXX 2> /dev/null']
+    let lines = split(system(cmd), '\n')
+    if v:shell_error != 0 | continue | endif
+    for line in lines
+      let [fname, lno, text] = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')[1:3]
+      call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
+    endfor
+    break
+  endfor
+
+  if !empty(entries)
+    call setqflist(entries)
+    copen
+  endif
+endfunction
+command! Todo call s:todo()
+" ==============================================================================
 
 " ==============================================================================
 "---begin make Alt key work on both GVim and vim
