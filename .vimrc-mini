@@ -443,7 +443,7 @@ nnoremap <silent> <leader>z :call <sid>zoom()<cr>
 " ----------------------------------------------------------------------------
 function! s:todo() abort
   let entries = []
-  for cmd in ['grep -rn -e TODO -e FIXME -e XXX 2> /dev/null']
+  for cmd in ['grep -rn -e TODO -e FIXME -e DELME * 2> /dev/null',]
     let lines = split(system(cmd), '\n')
     if v:shell_error != 0 | continue | endif
     for line in lines

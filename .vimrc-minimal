@@ -116,6 +116,29 @@ vnoremap > >gv
 " set autoindent
 set ai
 
+" Quickfix
+nnoremap ]q :cnext<cr>zz
+nnoremap [q :cprev<cr>zz
+nnoremap ]l :lnext<cr>zz
+nnoremap [l :lprev<cr>zz
+
+" Buffers
+nnoremap ]b :bnext<cr>
+nnoremap [b :bprev<cr>
+
+" Tabs
+nnoremap ]t :tabn<cr>
+nnoremap [t :tabp<cr>
+
+" <tab> / <s-tab> | Circular windows navigation
+nnoremap <tab>   <c-w>w
+nnoremap <S-tab> <c-w>W
+
+" Quit
+inoremap <C-Q>     <esc>:q<cr>
+nnoremap <C-Q>     :q<cr>
+vnoremap <C-Q>     <esc>
+
 " set formatoptions and breakindent
 set formatoptions+=1
 if has('patch-7.3.541')
