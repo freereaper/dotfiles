@@ -48,7 +48,7 @@ let s:settings.airtheme = 'tomorrow'
 	endif
 
 	Plug 'a.vim', { 'for': [ 'c', 'h', 'cpp' ] }
-	Plug 'taglist.vim'
+	Plug 'majutsushi/tagbar'
 
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
@@ -83,7 +83,6 @@ let s:settings.airtheme = 'tomorrow'
 	Plug 'ultisnips'
 
 	Plug 'ctrlp.vim'
-	"plug 'mru.vim'
 	Plug 'YankRing.vim'
 	Plug 'Lokaltog/vim-easymotion'
 	Plug 'godlygeek/tabular'
@@ -214,18 +213,12 @@ let s:settings.airtheme = 'tomorrow'
 
 
 "------------------------------------------------------------------------------
-" Taglist cfg {
-	let Tlist_Show_One_File =1
-	let Tlist_Exit_OnlyWindow =1
-	let Tlist_Use_Right_Window =1
-	let Tlist_GainFocus_On_ToggleOpen = 1
-	let Tlist_Close_On_Select=1
-	let Tlist_Process_File_Always = 1
-	"let Tlist_WinHeight = 30
-	let Tlist_WinWidth = 30
-	let Tlist_Inc_Winwidth=0
-	map <silent> tl :TlistToggle<cr>
-"} /* end of taglist cfg */
+" Tagbar cfg {
+	inoremap tl <esc>:TagbarToggle<cr>
+	nnoremap tl :TagbarToggle<cr>
+	let g:tagbar_autofocus = 1
+	let g:tagbar_sort = 0
+"} /* end of tagbar cfg */
 "------------------------------------------------------------------------------
 
 

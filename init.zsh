@@ -50,7 +50,7 @@ function bootstrap-rbenv {
 # PYTHON {{{
 
 function bootstrap-rbenv {
-   __clone 'https://github.com/yyuu/pyenv.git' '.pyenv'
+    __clone 'https://github.com/yyuu/pyenv.git' '.pyenv'
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.profile
     echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $HOME/.profile
     echo 'export PATH="$HOME/.pyenv/shims:$PATH"' >> $HOME/.profile
@@ -79,8 +79,8 @@ function bootstrap-nvm {
 # GO {{{
 
 function bootstrap-gvm {
-  zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-  echo "source $HOME/.gvm/scripts/gvm" >> $HOME/.profile
+    zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+    echo "source $HOME/.gvm/scripts/gvm" >> $HOME/.profile
 }
 
 # }}}
