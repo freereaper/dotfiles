@@ -9,23 +9,22 @@ popd > /dev/null
 function __symlink {
     if [ ! -f "$HOME/$1" -a ! -d "$HOME/$1" ]; then
         echo "symlinking $BASEDIR/$1  => $HOME/$1"
-        ln -s "BASEDIR/$1" "$HOME/$1"
+        ln -s "$BASEDIR/$1" "$HOME/$1"
     fi
 }
 
 function __symlink_config {
     if [ ! -f "$HOME/.config/$1" -a ! -d "$HOME/.config/$1" ]; then
         echo "symlinking $BASEDIR/.config/$1  => $HOME/.config/$1"
-        ln -s "BASEDIR/.config/$1" "$HOME/.config/$1"
+        ln -s "$BASEDIR/.config/$1" "$HOME/.config/$1"
     fi
 }
 
 function __clone {
-    if [ ! -d "BASEDIR/$2" ]; then
+    if [ ! -d "$BASEDIR/$2" ]; then
         git clone --recursive "$1" "$BASEDIR/$2"
     fi
     __symlink $2
-
 }
 
 # }}}
@@ -49,12 +48,8 @@ function bootstrap-rbenv {
 #-------------------------------------------------------------------------------
 # PYTHON {{{
 
-function bootstrap-rbenv {
+function bootstrap-pyenv {
     __clone 'https://github.com/yyuu/pyenv.git' '.pyenv'
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.profile
-    echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $HOME/.profile
-    echo 'export PATH="$HOME/.pyenv/shims:$PATH"' >> $HOME/.profile
-    echo 'eval "$(pyenv init -)"' >> $HOME/.profile
 }
 
 # }}}
@@ -92,10 +87,7 @@ function bootstrap-gvm {
 
 function bootstrap-zsh {
     __clone 'https://github.com/freereaper/oh-my-zsh.git' '.oh-my-zsh'
-    if [ -n "$ZSH_VERSION" ]; then
-        export ZSH = "$HOME/$BASEDIR/.oh-my-zsh"
-        __symlink ".zshrc"
-    fi
+	__symlink ".zshrc"
 
 }
 
@@ -106,6 +98,9 @@ function bootstrap-zsh {
 #-------------------------------------------------------------------------------
 # VIM {{{
 function bootstrap-vim {
+	if [ ! -f "$HOME/.vim/autoload/plug.vim" ];then
+		curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	fi
     __symlink ".vimrc"
     __symlink ".vimrc-mini"
     __symlink ".vimrc-minimal"
@@ -175,6 +170,12 @@ __symlink '.inputrc'
 #-------------------------.editrc-----------------------------------
 __symlink '.editrc'
 
+
+bootstrap-pyenv
+
+bootstrap-vim
+
+bootstrap-zsh
 
 export PATH="$BASEDIR/bin:$PATH"
 
