@@ -124,7 +124,10 @@ function bootstrap-bspwm {
 
 if [ ! -f "$HOME/.gitconfig" ]; then
     touch "$HOME/.gitconfig"
-    __symlink ".gitignore_global"
+
+    echo "[user]" >> "$HOME/.gitconfig"
+    echo "  name = reaper" >> "$HOME/.gitconfig"
+    echo "  email = freereaper@aliyun.com" >> "$HOME/.gitconfig"
 
     echo "[alias]" >> "$HOME/.gitconfig"
     echo "  br = branch" >> "$HOME/.gitconfig"
@@ -170,6 +173,8 @@ __symlink '.inputrc'
 #-------------------------.editrc-----------------------------------
 __symlink '.editrc'
 
+#-------------------------.gitignore-----------------------------------
+__symlink ".gitignore_global"
 
 bootstrap-pyenv
 

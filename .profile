@@ -37,6 +37,13 @@ alias l='ls -CF'
 # alias lsf="ls -lp | ag -v /" # (or grep -v '^d')
 alias lsf="ls -alh | ag -v '^d'" # (or grep -v '^d')
 
+#lsF() {
+#    if [ -d "$1" ]; then
+#        ls -alh $1 | ag -v '^d'
+#    elif
+#
+#}
+
 # List directories only
 alias lsd="ls -alh | ag '^d'" # (or grep -v '^d')
 
