@@ -537,9 +537,11 @@ let s:settings.airtheme = 'tomorrow'
 
 "------------------------------------------------------------------------------
 " YCM cfg {{{
-let g:ycm_global_ycm_extra_conf = "/home/reaper/.vim/.ycm_extra_conf_global.py"
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_filetype_blacklist = {
+  " make pyenv virtualenv work if compiled with python2 but pyenv set python3
+  let g:ycm_server_python_interpreter = "/usr/bin/python"
+  let g:ycm_global_ycm_extra_conf = "/home/reaper/.vim/.ycm_extra_conf_global.py"
+  let g:ycm_confirm_extra_conf = 0
+  let g:ycm_filetype_blacklist = {
 			\ 'ctrlsf' : 1,
 			\ 'tagbar' : 1,
 			\ 'unite' : 1,

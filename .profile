@@ -35,17 +35,22 @@ alias l='ls -CF'
 
 # List files only
 # alias lsf="ls -lp | ag -v /" # (or grep -v '^d')
-alias lsf="ls -alh | ag -v '^d'" # (or grep -v '^d')
-
-#lsF() {
-#    if [ -d "$1" ]; then
-#        ls -alh $1 | ag -v '^d'
-#    elif
-#
-#}
+lsf() {
+    if [ $# -eq 1 ]; then
+        ls -alh $1 | ag -v '^d'
+    else
+        ls -alh | ag -v '^d'
+    fi
+}
 
 # List directories only
-alias lsd="ls -alh | ag '^d'" # (or grep -v '^d')
+lsd() {
+    if [ $# -eq 1 ]; then
+        ls -alh $1 | ag '^d'
+    else
+        ls -alh | ag '^d'
+    fi
+}
 
 
 # change system-wide editor
