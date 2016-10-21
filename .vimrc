@@ -488,7 +488,18 @@ let s:settings.airtheme = 'tomorrow'
 " vim-markdown cfg{
 	let g:vim_markdown_folding_disabled=1
 
-"} /* end of vim-markdown cfg */
+
+" below section need to be at the bottom of the file, or else the auto bullet in
+" markdown will not work
+
+" Set *.md file to be markdown filetype instead of modula2 as default
+	autocmd BufRead,BufNew,BufNewFile *.md set filetype=markdown
+
+" http://stackoverflow.com/questions/19211839/markdown-lists-in-vim
+	autocmd Filetype markdown setlocal com=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,b:-,b:+ | set formatoptions+=tcroqln
+
+" make markdown auto insert list with 1. when possible
+	autocmd Filetype markdown setlocal com+=b:1.
 "------------------------------------------------------------------------------
 
 
