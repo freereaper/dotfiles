@@ -59,7 +59,7 @@ let s:settings.airtheme = 'tomorrow'
 
 	Plug 'altercation/vim-colors-solarized'
 	Plug 'tomasr/molokai'
-	Plug 'morhetz/gruvbox'
+	Plug 'jacoborus/tender'
 	Plug 'dracula/vim'
   Plug 'chriskempson/vim-tomorrow-theme'
 
@@ -126,7 +126,6 @@ let s:settings.airtheme = 'tomorrow'
 		let g:solarized_visibility="high"
 		let g:solarized_termcolors = 256
 		set background=dark
-	"	colorscheme solarized
 	"} /* end of solarized cfg */
 	"*******************************************************************
 
@@ -135,28 +134,22 @@ let s:settings.airtheme = 'tomorrow'
 	" molokai cfg {
 		let g:molokai_original = 1
 		let g:rehash256 = 1
-		"colorscheme molokai
 	"} /* end of molokai cfg */
 	"*******************************************************************
 	
+
+	"*******************************************************************
+  "dracula-theme cfg {
+  "} /* end of dracula-theme cfg */
+	"*******************************************************************
+
+	"*******************************************************************
+  " tender cfg {
+  "} /* end of tender cfg */
+	"*******************************************************************
+
 	exec 'colorscheme '.s:settings.colorscheme
-	"------------------------------------------------------------------------------
-
-"------------------------------------------------------------------------------
-"dracula-theme cfg {
-	"color dracula
-"} /* end of dracula-theme cfg */
-"------------------------------------------------------------------------------
-
-
-"------------------------------------------------------------------------------
-" gruvbox cfg {
-	set background=dark
-	let g:gruvbox_termcolors=256
-	let g:gruvbox_italic=1
-	let g:gruvbox_contrast_dark='hard'
-	let g:gruvbox_contrast_light='light'
-"} /* end of gruvbox cfg */
+" }}} end colors cfg
 "------------------------------------------------------------------------------
 
 
@@ -551,6 +544,9 @@ let s:settings.airtheme = 'tomorrow'
   " make pyenv virtualenv work if compiled with python2 but pyenv set python3
   let g:ycm_server_python_interpreter = "/usr/bin/python"
   let g:ycm_global_ycm_extra_conf = "/home/reaper/.vim/.ycm_extra_conf_global.py"
+  "let g:ycm_show_diagnostics_ui = 0
+  "let g:ycm_enable_diagnostic_signs = 0
+  let g:ycm_enable_diagnostic_highlighting = 0
   let g:ycm_confirm_extra_conf = 0
   let g:ycm_filetype_blacklist = {
 			\ 'ctrlsf' : 1,

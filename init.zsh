@@ -50,6 +50,10 @@ function bootstrap-rbenv {
 
 function bootstrap-pyenv {
     __clone 'https://github.com/yyuu/pyenv.git' '.pyenv'
+    if [ ! -d "$HOME/.pyenv/plugins/pyenv-virtualenv" ]; then
+        mkdir -p "$HOME/.pyenv/plugins"
+        git clone https://github.com/yyuu/pyenv-virtualenv.git $HOME/.pyenv/plugins/pyenv-virtualenv
+    fi
 }
 
 # }}}
@@ -87,7 +91,7 @@ function bootstrap-gvm {
 
 function bootstrap-zsh {
     __clone 'https://github.com/freereaper/oh-my-zsh.git' '.oh-my-zsh'
-	__symlink ".zshrc"
+    __symlink ".zshrc"
 
 }
 

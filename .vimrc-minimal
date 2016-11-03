@@ -135,6 +135,10 @@ inoremap <C-Q>     <esc>:q<cr>
 nnoremap <C-Q>     :q<cr>
 vnoremap <C-Q>     <esc>
 
+"swap windows
+"ctrl+w L
+
+
 " set formatoptions and breakindent
 set formatoptions+=1
 if has('patch-7.3.541')
