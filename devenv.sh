@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# just 'ln -s devenv.sh /etc/profile.d/devenv.sh' to ensure this script will be excute when system start up
-
-
 # set visible cursor in xmonad
 xsetroot -cursor_name left_ptr
 

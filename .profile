@@ -94,6 +94,11 @@ alias uu="udisks --unmount"
 autocutsel -selection CLIPBOARD -fork
 autocutsel -selection PRIMARY -fork
 
+#source ~/myenv/devenv.sh
+if [ -f "$HOME/myenv/devenv.sh" ] ; then
+    source "$HOME/myenv/devenv.sh"
+fi
+
 #set P4CONFIG
 if test -z "$P4CONFIG";then
 	export P4CONFIG=$HOME/myenv/p4.conf
