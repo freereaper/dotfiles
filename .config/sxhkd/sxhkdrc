@@ -150,8 +150,9 @@ alt + shift + p
 alt + shift + f
 	firefox
 
+# install by google-chrome-stable_current_amd64.deb
 alt + shift + c
-	chromium-browser
+	google-chrome-stable
 
 alt + shift + m
 	remmina

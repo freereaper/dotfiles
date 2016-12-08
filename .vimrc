@@ -109,7 +109,7 @@ let s:settings.airtheme = 'tomorrow'
 	syntax enable
 
 	" fix background color of nontext area seems not ringt in vim under tmux
-	if !g:isGUI
+	if exists('$TMUX')
 		set t_ut=
 	endif
 "} /* end of general cfg */
@@ -387,19 +387,20 @@ let s:settings.airtheme = 'tomorrow'
 " ctrlsf cfg [
 	"let g:ctrlsf_default_root = 'project'
 	let g:ctrlsf_default_root = 'reaper'
-  let g:ctrlsf_debug_mode = 0
-
-	"let g:ctrlsf_position = 'bottom'
+	let g:ctrlsf_debug_mode = 0
+	let g:ctrlsf_case_sensitive = 'smart'
+	let g:ctrlsf_position = 'top'
+  let g:ctrlsf_auto_close = 0
 
 	"let g:ctrlsf_mapping = {
 	"	\ "next": "n",
 	"	\ "prev": "N",
 	"\}
-  let g:ctrlsf_extra_backend_args = {
+	let g:ctrlsf_extra_backend_args = {
 		\ "ag": "--follow"
 		\}
 
-	let g:ctrlsf_winsize = "100%"
+	let g:ctrlsf_winsize = "40%"
 	let g:ctrlsf_context = '-B 5 -A 3'
 
 	nnoremap <C-\>t :CtrlSFToggle<CR>
@@ -464,7 +465,7 @@ let s:settings.airtheme = 'tomorrow'
 	map <Leader>k <Plug>(easymotion-k)
 
 	hi link EasyMotionTarget ErrorMsg
-    hi link EasyMotionShade  Comment
+	hi link EasyMotionShade  Comment
 "} /* end of easymotion cfg */
 "------------------------------------------------------------------------------
 
