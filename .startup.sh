@@ -29,3 +29,8 @@ autocutsel -selection PRIMARY -fork
 if hash hsetroot 2>/dev/null; then
     hsetroot -fill "$HOME/.blackjpg"
 fi
+
+# install open-vm-tools and open-vm-tools-desktop to enable fullscreen in vm
+if hash vmware-user-suid-wrapper 2>/dev/null; then
+    vmware-user-suid-wrapper 2>/dev/null
+fi

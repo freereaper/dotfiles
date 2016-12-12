@@ -12,8 +12,8 @@ Xcursor.theme: Pulse-Glass
 Xcursor.size:  22
 
 
-URxvt.saveLines:1000000
-URxvt.geometry:100x30
+! URxvt.saveLines:1000000
+! URxvt.geometry:100x30
 URxvt.depth:32
 URxvt.background:#1C1C1C
 URxvt.foreground:white
