@@ -385,28 +385,36 @@ let s:settings.airtheme = 'tomorrow'
 
 "------------------------------------------------------------------------------
 " ctrlsf cfg [
-	"let g:ctrlsf_default_root = 'project'
 	let g:ctrlsf_default_root = 'reaper'
 	let g:ctrlsf_debug_mode = 0
 	let g:ctrlsf_case_sensitive = 'smart'
-	let g:ctrlsf_position = 'top'
-  let g:ctrlsf_auto_close = 0
+	let g:ctrlsf_position = 'bottom'
+	let g:ctrlsf_auto_close = 0
+	let g:ctrlsf_indent = 2
+	let g:ctrlsf_ackprg = '/usr/local/bin/ag'
 
-	"let g:ctrlsf_mapping = {
-	"	\ "next": "n",
-	"	\ "prev": "N",
-	"\}
+	let g:ctrlsf_mapping = {
+	\ "vsplit" : "v",
+	\}
 	let g:ctrlsf_extra_backend_args = {
 		\ "ag": "--follow"
 		\}
 
 	let g:ctrlsf_winsize = "40%"
-	let g:ctrlsf_context = '-B 5 -A 3'
+	let g:ctrlsf_context = '-B 3 -A 3'
 
 	nnoremap <C-\>t :CtrlSFToggle<CR>
 	inoremap <C-\>t <Esc>:CtrlSFToggle<CR>
 	nmap <C-f> <Plug>CtrlSFCwordExec
 	vmap <C-f> <Plug>CtrlSFVwordExec
+
+	"Enter - Open corresponding file of current line in the window which CtrlSF is launched from.
+	"<C-O> - Like Enter but open file in a horizontal split window.
+	"t - Like Enter but open file in a new tab.
+	"p - Like Enter but open file in a preview window.
+	"P - Like Enter but open file in a preview window and switch focus to it.
+	"O - Like Enter but always leave CtrlSF window opening.
+	"T - Like t but focus CtrlSF window instead of new opened tab.
 	"} /* end of ctrlsf cfg */
 "------------------------------------------------------------------------------
 
