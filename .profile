@@ -91,9 +91,6 @@ sudo() {
 alias um="udisks --mount"
 alias uu="udisks --unmount"
 
-autocutsel -selection CLIPBOARD -fork
-autocutsel -selection PRIMARY -fork
-
 #source ~/myenv/devenv.sh
 if [ -f "$HOME/myenv/devenv.sh" ] ; then
     source "$HOME/myenv/devenv.sh"
