@@ -552,10 +552,10 @@ let s:settings.airtheme = 'tomorrow'
 " YCM cfg {{{
   " make pyenv virtualenv work if compiled with python2 but pyenv set python3
   let g:ycm_server_python_interpreter = "/usr/bin/python"
-  let g:ycm_global_ycm_extra_conf = "/home/reaper/.vim/.ycm_extra_conf_global.py"
+  let g:ycm_global_ycm_extra_conf = "/$HOME/.vim/.ycm_extra_conf_global.py"
   "let g:ycm_show_diagnostics_ui = 0
-  "let g:ycm_enable_diagnostic_signs = 0
-  let g:ycm_enable_diagnostic_highlighting = 0
+  let g:ycm_enable_diagnostic_signs = 1
+  let g:ycm_enable_diagnostic_highlighting = 1
   let g:ycm_confirm_extra_conf = 0
   let g:ycm_filetype_blacklist = {
 			\ 'ctrlsf' : 1,
