@@ -39,3 +39,7 @@ gems.tags
 ehthumbs.db
 Thumbs.db
 *.dat
+
+#YCM
+.ycm_extra_conf.py
+.ycm_extra_conf.pyc

@@ -80,15 +80,14 @@ let s:settings.airtheme = 'tomorrow'
 	"plug 'Shougo/neocomplete'
 	"plug 'OmniCppComplete'
 	Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
-	Plug 'ultisnips'
+	"Plug 'ultisnips'
 
 	Plug 'ctrlp.vim'
 	Plug 'YankRing.vim'
 	Plug 'Lokaltog/vim-easymotion'
 	Plug 'godlygeek/tabular'
 	Plug 'plasticboy/vim-markdown'
-	"not suitable
-	"Plug 'airblade/vim-gitgutter'
+
 	Plug 'freereaper/cscope.vim'
 	Plug 'christoomey/vim-tmux-navigator'
 	Plug 'junegunn/goyo.vim'
@@ -258,17 +257,16 @@ let s:settings.airtheme = 'tomorrow'
 
 "------------------------------------------------------------------------------
 " syntastic cfg {
-	"let g:syntastic_check_on_open = 0
-	"let g:syntastic_cpp_include_dirs = ['/usr/include/']
-	"let g:syntastic_cpp_remove_include_errors = 1
-	"let g:syntastic_cpp_check_header = 1
-	"let g:syntastic_cpp_compiler = 'clang++'
-	"let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
-	"let g:syntastic_error_symbol = 'x'
-	"let g:syntastic_warning_symbol = '?'
-	"let g:syntastic_enable_balloons = 1
-	"let g:syntastic_enable_signs = 0
-	"let g:syntastic_ignore_files = [".*\.py$"]
+"	let g:syntastic_error_symbol = '✗'
+"	let g:syntastic_warning_symbol = '⚠'
+"	let g:syntastic_cpp_include_dirs = ['/usr/include/']
+"	let g:syntastic_cpp_remove_include_errors = 1
+"	let g:syntastic_cpp_check_header = 1
+"	let g:syntastic_cpp_compiler = 'clang++'
+"	let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+"	let g:syntastic_enable_balloons = 1
+"	let g:syntastic_enable_signs = 1
+"	let g:syntastic_ignore_files = [".*\.py$"]
 "} /* end of syntastic cfg */
 "------------------------------------------------------------------------------
 
@@ -553,8 +551,9 @@ let s:settings.airtheme = 'tomorrow'
   " make pyenv virtualenv work if compiled with python2 but pyenv set python3
   let g:ycm_server_python_interpreter = "/usr/bin/python"
   let g:ycm_global_ycm_extra_conf = "/$HOME/.vim/.ycm_extra_conf_global.py"
-  "let g:ycm_show_diagnostics_ui = 0
-  let g:ycm_enable_diagnostic_signs = 1
+  let g:ycm_show_diagnostics_ui = 1
+  let g:ycm_error_symbol = '✗'
+	let g:ycm_warning_symbol = '⚠'
   let g:ycm_enable_diagnostic_highlighting = 1
   let g:ycm_confirm_extra_conf = 0
   let g:ycm_filetype_blacklist = {

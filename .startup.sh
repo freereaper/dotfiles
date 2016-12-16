@@ -29,3 +29,6 @@ autocutsel -selection PRIMARY -fork
 if hash hsetroot 2>/dev/null; then
     hsetroot -fill "$HOME/.blackjpg"
 fi
+
+#disable dpms
+xset -dpms
