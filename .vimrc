@@ -337,7 +337,7 @@ let s:settings.airtheme = 'tomorrow'
 	"ctrlp buffers && MRU && TAGS
 	"use <C-z> to select and <F7> to delete
 	nnoremap <C-b> :CtrlPBuffer<cr>
-	nnoremap <C-m> :CtrlPMRUFiles<cr>
+	nnoremap <C-y> :CtrlPMRUFiles<cr>
 	nnoremap <C-t> :CtrlPBufTagAll<cr>
 "} /* end of ctrlp cfg */
 "------------------------------------------------------------------------------
@@ -404,12 +404,13 @@ let s:settings.airtheme = 'tomorrow'
 
 "------------------------------------------------------------------------------
 " ctrlsf cfg [
-	"let g:ctrlsf_default_root = 'project'
 	let g:ctrlsf_default_root = 'reaper'
 	let g:ctrlsf_debug_mode = 0
 	let g:ctrlsf_case_sensitive = 'smart'
-	let g:ctrlsf_position = 'top'
-  let g:ctrlsf_auto_close = 0
+	let g:ctrlsf_position = 'bottom'
+	let g:ctrlsf_auto_close = 0
+	let g:ctrlsf_indent = 2
+	let g:ctrlsf_ackprg = '/usr/local/bin/ag'
 
 	"let g:ctrlsf_mapping = {
 	"	\ "next": "n",
