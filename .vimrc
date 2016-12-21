@@ -72,17 +72,15 @@ let s:settings.airtheme = 'tomorrow'
 	Plug 'terryma/vim-multiple-cursors'
   "Plug 'ntpeters/vim-better-whitespace'
 
-	"windows install YCM too complictated
 	Plug 'Valloric/YouCompleteMe'
-	"plug 'rdnetto/YCM-Generator'
+	Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 	Plug 'Valloric/ListToggle'
 
-	"plug 'Shougo/neocomplete'
-	"plug 'OmniCppComplete'
 	Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
 	"Plug 'ultisnips'
 
-	Plug 'ctrlp.vim'
+	Plug 'ctrlpvim/ctrlp.vim', { 'tag': '1.80' }
+	"Plug 'tacahiroy/ctrlp-funky', { 'on': 'CtrlPFunky' }
 	Plug 'YankRing.vim'
 	Plug 'Lokaltog/vim-easymotion'
 	Plug 'godlygeek/tabular'
@@ -92,6 +90,10 @@ let s:settings.airtheme = 'tomorrow'
 	Plug 'christoomey/vim-tmux-navigator'
 	Plug 'junegunn/goyo.vim'
 	Plug 'junegunn/limelight.vim'
+	Plug 'skywind3000/asyncrun.vim'
+
+	"open plug status windows
+	nnoremap <Leader>ap :PlugStatus<cr>:only<cr>
 
   call plug#end()
 " }}} /* end  of vundle cfg */
@@ -300,24 +302,41 @@ let s:settings.airtheme = 'tomorrow'
 	set wildignore+=*\\tmp\\*,*.swp,*.zip,*.o,tags  "windows
 	set wildignore+=*/tmp/*,*.so,*.swp,*.zip,tags,*.o   " MacOSX/Linux
 	let g:ctrlp_working_path_mode = 'rw'
-  let g:ctrlp_regexp = 1
+	let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+	let g:user_command_async = 1
+	let g:ctrlp_switch_buffer = 'et'
+	let g:ctrlp_max_files = 50000
+	let g:ctrlp_regexp = 1
+	let g:ctrlp_extensions = ['buffertag', 'bookmarkdir']
 	let g:ctrlp_custom_ignore = {
             \ 'dir':  '\v[\/]\.(git|hg|svn)$',
             \ 'file': '\v\.(exe|so|dll|o|lib|png|jpg|a|obj|doc)$',
             \ 'link': '',
             \ }
 	let g:ctrlp_follow_symlinks = 1
-
 	if executable('ag')
 		let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden --follow
 					\ --ignore .git
-					\ --ignore out
 					\ --ignore .svn
 					\ --ignore .hg
 					\ --ignore .DS_Store
+					\ --ignore "*.[odODaA]"
+					\ --ignore "*.out"
+					\ --ignore "cscope*"
 					\ -g ""'
 		let g:ctrlp_use_caching = 0
 	endif
+
+	let g:ctrlp_funky_syntax_highlight = 1
+	let g:ctrlp_funky_matchtype = 'path'
+	nnoremap <Leader>fu :CtrlPFunky<Cr>
+	nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+	"ctrlp buffers && MRU && TAGS
+	"use <C-z> to select and <F7> to delete
+	nnoremap <C-b> :CtrlPBuffer<cr>
+	nnoremap <C-m> :CtrlPMRUFiles<cr>
+	nnoremap <C-t> :CtrlPBufTagAll<cr>
 "} /* end of ctrlp cfg */
 "------------------------------------------------------------------------------
 
@@ -548,15 +567,15 @@ let s:settings.airtheme = 'tomorrow'
 
 "------------------------------------------------------------------------------
 " YCM cfg {{{
-  " make pyenv virtualenv work if compiled with python2 but pyenv set python3
-  let g:ycm_server_python_interpreter = "/usr/bin/python"
-  let g:ycm_global_ycm_extra_conf = "/$HOME/.vim/.ycm_extra_conf_global.py"
-  let g:ycm_show_diagnostics_ui = 1
-  let g:ycm_error_symbol = '✗'
+	" make pyenv virtualenv work if compiled with python2 but pyenv set python3
+	let g:ycm_server_python_interpreter = "/usr/bin/python"
+	let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf_global.py"
+	let g:ycm_show_diagnostics_ui = 1
+	let g:ycm_error_symbol = '✗'
 	let g:ycm_warning_symbol = '⚠'
-  let g:ycm_enable_diagnostic_highlighting = 1
-  let g:ycm_confirm_extra_conf = 0
-  let g:ycm_filetype_blacklist = {
+	let g:ycm_enable_diagnostic_highlighting = 1
+	let g:ycm_confirm_extra_conf = 0
+	let g:ycm_filetype_blacklist = {
 			\ 'ctrlsf' : 1,
 			\ 'tagbar' : 1,
 			\ 'unite' : 1,
@@ -570,7 +589,7 @@ let s:settings.airtheme = 'tomorrow'
 
 "------------------------------------------------------------------------------
 " limelight.vim + Goyo.vim cfg {{{
-  let g:limelight_conceal_ctermfg = 240
+	let g:limelight_conceal_ctermfg = 240
 	let g:limelight_conceal_guifg = '#777777'
 	let g:limelight_paragraph_span = 1
 	let g:limelight_priority = -1

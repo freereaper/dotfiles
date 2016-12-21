@@ -36,7 +36,7 @@ URxvt.tintColor:black
 URxvt.fading:20
 URxvt.fadeColor: #453e40
 ! URxvt.perl-ext-common:default,clipboard,matcher,tabbed
-URxvt.perl-ext-common:default,matcher,selection-to-clipboard
+URxvt.perl-ext-common:default,matcher,clipboard
 URxvt.url-launcher:/usr/bin/firefox
 URxvt.matcher.button:1
 URxvt.scrollBar:false
