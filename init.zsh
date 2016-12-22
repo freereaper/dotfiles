@@ -92,7 +92,6 @@ function bootstrap-gvm {
 function bootstrap-zsh {
     __clone 'https://github.com/freereaper/oh-my-zsh.git' '.oh-my-zsh'
     __symlink ".zshrc"
-
 }
 
 # }}}
@@ -101,34 +100,40 @@ function bootstrap-zsh {
 
 #-------------------------------------------------------------------------------
 # VIM {{{
+
 function bootstrap-vim {
-	if [ ! -f "$HOME/.vim/autoload/plug.vim" ];then
-		curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	fi
+    if [ ! -f "$HOME/.vim/autoload/plug.vim" ];then
+        curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
     __symlink ".vimrc"
     __symlink ".vimrc-mini"
     __symlink ".vimrc-minimal"
 }
+
 # }}}
 #-------------------------------------------------------------------------------
 
 
 #-------------------------------------------------------------------------------
 # bspwm {{{
+
 function bootstrap-bspwm {
     __symlink_config "bspwm"
     __symlink_config "sxhkd"
 }
+
 # }}}
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-#urxvt {{{
+# urxvt {{{
+
 function bootstrap-urxvt {
     perl_ext=$BASEDIR/urxvt/perl-extensions
     cp -f $BASEDIR/urxvt/.Xresources ~/.Xresources
     perl -i -p -e "s!PATH_TO_PERL_EXT!$perl_ext!ig" ~/.Xresources
 }
+
 # }}}
 #-------------------------------------------------------------------------------
 
