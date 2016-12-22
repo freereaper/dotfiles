@@ -35,8 +35,9 @@ URxvt.shading:85
 URxvt.tintColor:black
 URxvt.fading:20
 URxvt.fadeColor: #453e40
-! URxvt.perl-ext-common:default,clipboard,matcher,tabbed
-URxvt.perl-ext-common:default,matcher,clipboard
+
+URxvt.perl-lib: PATH_TO_PERL_EXT
+URxvt.perl-ext-common:default,matcher,selection_to_clipboard,keyboard-select,clipboard
 URxvt.url-launcher:/usr/bin/firefox
 URxvt.matcher.button:1
 URxvt.scrollBar:false
@@ -58,9 +59,15 @@ URxvt.scrollTtyKeypress: true
 ! disable for Ctrl+Shift+c/v for copy and paste
 URxvt.iso14755:false
 URxvt.iso14755_52:false
-URxvt.keysym.C-C: perl:clipboard:copy
-URxvt.keysym.C-V: perl:clipboard:paste
-URxvt.keysym.C-A-V: perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+! use Alt+s to search history
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-V: perl:clipboard:paste_escaped
+URxvt.clipboard.autocopy: true
+URxvt.clipboard.copycmd:  xclip -i -selection clipboard
+URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 
 
 ! Use Ctrl+[0..9] to select window in tmux
