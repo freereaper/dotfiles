@@ -122,6 +122,17 @@ function bootstrap-bspwm {
 # }}}
 #-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+#urxvt {{{
+function bootstrap-urxvt {
+    perl_ext=$BASEDIR/urxvt/perl-extensions
+    cp -f $BASEDIR/urxvt/.Xresources ~/.Xresources
+    perl -i -p -e "s!PATH_TO_PERL_EXT!$perl_ext!ig" ~/.Xresources
+}
+# }}}
+#-------------------------------------------------------------------------------
+
+
 
 #-------------------------------------------------------------------------------
 # GIT {{{
@@ -162,9 +173,6 @@ __clone 'https://github.com/powerline/fonts.git' '.fonts'
 # -------------------------tmux----------------------------------------
 __symlink '.tmux.conf'
 
-# --------------------------urxvt--------------------------------------
-__symlink '.Xresources'
-
 #---------------------------ag-----------------------------------------
 __symlink '.agignore'
 
@@ -197,6 +205,8 @@ bootstrap-vim
 bootstrap-zsh
 
 bootstrap-bspwm
+
+bootstrap-urxvt
 
 export PATH="$BASEDIR/bin:$PATH"
 
