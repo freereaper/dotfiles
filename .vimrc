@@ -113,6 +113,12 @@ let s:settings.airtheme = 'tomorrow'
 	" fix background color of nontext area seems not ringt in vim under tmux
 	if exists('$TMUX')
 		set t_ut=
+    " for now, rxvt-unicode-256color seems not support true color
+		if has('termguicolors')
+			let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+			let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+			set termguicolors
+		endif
 	endif
 "} /* end of general cfg */
 "------------------------------------------------------------------------------
