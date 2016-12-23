@@ -341,7 +341,7 @@ let s:settings.airtheme = 'tomorrow'
 	"ctrlp buffers && MRU && TAGS
 	"use <C-z> to select and <F7> to delete
 	nnoremap <C-b> :CtrlPBuffer<cr>
-	nnoremap <C-m> :CtrlPMRUFiles<cr>
+	nnoremap <C-y> :CtrlPMRUFiles<cr>
 	nnoremap <C-t> :CtrlPBufTagAll<cr>
 "} /* end of ctrlp cfg */
 "------------------------------------------------------------------------------
