@@ -530,3 +530,111 @@ function! HLNext (blinktime)
   endfor
 endfunction
 " ==============================================================================
+
+
+" ----------------------------------------------------------------------------
+" :CSBuild
+" ----------------------------------------------------------------------------
+let s:tmpfile = ''
+function! Add_cscope_db()
+  " add any database in current directory and parent dir
+  let db = findfile('cscope.out', '.;')
+  if !empty(db)
+    silent cs reset
+    silent! execute 'cs add' db
+    echon "DB loaded in: ".db
+  " else add database pointed to by environment
+  elseif !empty($CSCOPE_DB)
+    silent cs reset
+    silent! execute 'cs add' $CSCOPE_DB
+    echon "DB loaded"
+  endif
+
+  if !empty(s:tmpfile)
+    silent! call delete(s:tmpfile)
+    let s:tmpfile = ""
+  endif
+endfunction
+
+
+if has('cscope')
+  set csto=0
+  set cst
+  set nocsverb
+  set csverb
+  call Add_cscope_db()
+endif
+
+function! s:cscope_list_files(ws, filter)
+  let l:file_list = []
+  let l:root_dir = a:ws
+  let l:filter = a:filter
+
+  let l:items = globpath(l:root_dir, "**/*.*", 0, 1, 1)
+  for l:item in l:items
+    if l:item !~? l:filter
+      continue
+    else
+      if stridx(l:item, ' ') != -1
+        let l:item = '"'.l:item.'"'
+      endif
+       call add(l:file_list, l:item)
+    endif
+  endfor
+
+  return l:file_list
+
+endfunction
+
+" ----------------------------------------------------------------------------
+" Cscope mappings
+" build_cscope_db support input self-defined interersted files.
+"   eg: CSBuild c h
+" ----------------------------------------------------------------------------
+function! s:build_cscope_db(...)
+  let l:vsc_folder = ['.git', '.hg', '.svn', '.bzr', '_darcs']
+  for vsc in l:vsc_folder
+    let vsc_dir = finddir(vsc, getcwd().";")
+    if !empty(vsc_dir)
+      break
+    endif
+  endfo
+
+  let l:ws = empty(vsc_dir) ? getcwd() : fnamemodify(vsc_dir, ':h')
+
+  let chdired = 1
+  execute 'cd' l:ws
+
+  let exts = empty(a:000) ?
+    \ ['java', 'c', 'h', 'cc', 'hh', 'cpp', 'hpp'] : copy(a:000)
+
+  let filter = join(map(exts, '"\\." . v:val."$"'), '\|')
+
+  let tmp = tempname()
+  let s:tmpfile = tmp
+  try
+    echon 'Building cscope.files'
+    call writefile(s:cscope_list_files(l:ws, filter), tmp)
+    echon ' - build cscoped db async'
+    exec "AsyncRun -post=call\\ Add_cscope_db() ".
+        \ "cscope -R -b -q -i".tmp
+  finally
+    if chdired
+      cd -
+    endif
+  endtry
+
+endfunction
+command!  -nargs=* CSBuild call s:build_cscope_db(<f-args>)
+
+
+" ----------------------------------------------------------------------------
+" <leader>bs | buf-search
+" ----------------------------------------------------------------------------
+nnoremap <leader>bs :cex []<BAR>bufdo vimgrepadd @@g %<BAR>cw<s-left><s-left><right>
+
+" ----------------------------------------------------------------------------
+" #!! | Shebang
+" auto change #!! to the #!/usr/bin/env $filetype(eg. python)
+" ----------------------------------------------------------------------------
+inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype)

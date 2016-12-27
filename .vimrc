@@ -232,7 +232,6 @@ let s:settings.airtheme = 'tomorrow'
 	let g:doxygen_enhanced_color=1
 	nnoremap <F4> : Dox <CR>
 	nnoremap <C-F4> : DoxAuthor<CR>
-	autocmd BufNewFile *.{h,hpp,c,cpp} DoxAuthor
 "} /* end of DoxygenToolkit cfg */
 "------------------------------------------------------------------------------
 
@@ -342,9 +341,9 @@ let s:settings.airtheme = 'tomorrow'
 
 	"ctrlp buffers && MRU && TAGS
 	"use <C-z> to select and <F7> to delete
-	nnoremap <C-b> :CtrlPBuffer<cr>
-	nnoremap <C-y> :CtrlPMRUFiles<cr>
-	nnoremap <C-t> :CtrlPBufTagAll<cr>
+	nnoremap <Leader>e :CtrlPBuffer<cr>
+	nnoremap <Leader>m :CtrlPMRUFiles<cr>
+	nnoremap <Leader>t :CtrlPBufTagAll<cr>
 "} /* end of ctrlp cfg */
 "------------------------------------------------------------------------------
 
@@ -418,10 +417,8 @@ let s:settings.airtheme = 'tomorrow'
 	let g:ctrlsf_indent = 2
 	let g:ctrlsf_ackprg = '/usr/local/bin/ag'
 
-	"let g:ctrlsf_mapping = {
-	"	\ "next": "n",
-	"	\ "prev": "N",
-	"\}
+	let g:ctrlsf_mapping = {
+	\}
 	let g:ctrlsf_extra_backend_args = {
 		\ "ag": "--follow"
 		\}
@@ -512,14 +509,17 @@ let s:settings.airtheme = 'tomorrow'
 " below section need to be at the bottom of the file, or else the auto bullet in
 " markdown will not work
 
-" Set *.md file to be markdown filetype instead of modula2 as default
-	autocmd BufRead,BufNew,BufNewFile *.md set filetype=markdown
+	augroup markdown_file
+		autocmd!
+	" Set *.md file to be markdown filetype instead of modula2 as default
+		autocmd BufRead,BufNew,BufNewFile *.md set filetype=markdown
 
-" http://stackoverflow.com/questions/19211839/markdown-lists-in-vim
-	autocmd Filetype markdown setlocal com=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,b:-,b:+ | set formatoptions+=tcroqln
+	" http://stackoverflow.com/questions/19211839/markdown-lists-in-vim
+		autocmd Filetype markdown setlocal com=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,b:-,b:+ | set formatoptions+=tcroqln
 
-" make markdown auto insert list with 1. when possible
-	autocmd Filetype markdown setlocal com+=b:1.
+	" make markdown auto insert list with 1. when possible
+		autocmd Filetype markdown setlocal com+=b:1.
+	augroup END
 "------------------------------------------------------------------------------
 
 
@@ -616,7 +616,6 @@ let s:settings.airtheme = 'tomorrow'
 		elseif exists('$TMUX')
 			silent !tmux set status on
 		endif
-		"hi NonText ctermfg=101
 		Limelight!
     exec 'colorscheme '.s:settings.colorscheme
 	endfunction
@@ -625,5 +624,6 @@ let s:settings.airtheme = 'tomorrow'
 	autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 	nnoremap <Leader>G :Goyo<CR>
+
 " }}} /* end of Goyo cfg */
 "------------------------------------------------------------------------------
