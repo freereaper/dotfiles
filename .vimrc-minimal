@@ -25,7 +25,10 @@
 " compatibility with vi make `imap jk <ESC>` doesn't work
 set nocompatible
 
-imap jk <ESC>
+" jk | Escaping!
+inoremap jk <Esc>
+xnoremap jk <Esc>
+cnoremap jk <C-c>
 
 filetype plugin on
 
@@ -145,7 +148,7 @@ if has('patch-7.3.541')
   set formatoptions+=j
 endif
 if has('patch-7.4.338')
-  let &showbreak = '↳ '
+  let &showbreak = '↪ '
   set breakindent
   set breakindentopt=sbr
 endif

@@ -109,9 +109,10 @@ inoremap <c-s> <c-o>:Update<CR>
 " vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 " vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-
+" ----------------------------------------------------------------------------
 " write file with super user permission
-cmap w!! w !sudo tee %
+" ----------------------------------------------------------------------------
+cnoremap w!! w !sudo tee % >/dev/null
 
 set tabstop=4 expandtab
 set softtabstop=4
@@ -128,11 +129,9 @@ set fileformats=unix,dos,mac
 " community friendly format for Ruby and Clojure code indentation
 autocmd FileType vim,lua,json,yml,yaml,scss,ruby,lisp,eruby,clj,html,mkd,md,markdown,txt setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-
+" ----------------------------------------------------------------------------
 " Use Alt+number to go to a specific tab number
+" ----------------------------------------------------------------------------
 nnoremap <A-1> 1gt
 nnoremap <A-2> 2gt
 nnoremap <A-3> 3gt
@@ -143,6 +142,12 @@ nnoremap <A-7> 7gt
 nnoremap <A-8> 8gt
 nnoremap <A-9> 9gt
 nnoremap <A-0> 10gt
+
+" ----------------------------------------------------------------------------
+" <tab> / <s-tab> | Circular windows navigation
+" ----------------------------------------------------------------------------
+nnoremap <tab>   <c-w>w
+nnoremap <S-tab> <c-w>W
 
 " move cursor by display lines when wrapping
 nnoremap j gj
@@ -461,53 +466,6 @@ endfunction
 command! Todo call s:todo()
 " ==============================================================================
 
-" ==============================================================================
-"---begin make Alt key work on both GVim and vim
-" http://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
-" let c='0'
-" while c <= '9'
-"   exec "set <A-".c.">=\e".c
-"   " should it be nmap instead?
-"   exec "imap \e".c." <A-".c.">"
-"   let c = nr2char(1+char2nr(c))
-" endw
-" 
-" let c='a'
-" while c <= 'z'
-"   exec "set <A-".c.">=\e".c
-"   exec "imap \e".c." <A-".c.">"
-"   let c = nr2char(1+char2nr(c))
-" endw
-
-" set timeout ttimeoutlen=50
-"---end make Alt key work on both GVim and vim
-" ==============================================================================
-
-
-" ==============================================================================
-"---begin handling cursorline highlight
-" Comment it out as it's a bit annoying
-
-" set updatetime=100
-
-" au CursorHold * :call EnableCursorLine()
-" let g:ltt_highlighted = 0 " 0: not highlighted yet; 1: highlighted
-" fun! EnableCursorLine()
-"     " echom  g:ltt_highlighted
-"     let g:ltt_highlighted = 1
-"     set cul
-" endf
-
-" au CursorMoved * :call DisableCursorLine()
-" fun! DisableCursorLine()
-"     if (g:ltt_highlighted == 1)
-"         set nocul
-"         let g:ltt_highlighted = 0
-"     endif
-" endf
-"---end handling cursorline highlight
-" ==============================================================================
-
 
 " ==============================================================================
 nnoremap <silent> n   n:call HLNext(0.3)<cr>
@@ -537,17 +495,17 @@ endfunction
 " ----------------------------------------------------------------------------
 let s:tmpfile = ''
 function! Add_cscope_db()
-  " add any database in current directory and parent dir
-  let db = findfile('cscope.out', '.;')
+  " add any database in current work dir and parent dir
+  let db = findfile('cscope.out', getcwd().";")
   if !empty(db)
     silent cs reset
     silent! execute 'cs add' db
-    echon "DB loaded in: ".db
+    " echon "DB loaded in: ".db
   " else add database pointed to by environment
   elseif !empty($CSCOPE_DB)
     silent cs reset
     silent! execute 'cs add' $CSCOPE_DB
-    echon "DB loaded"
+    " echon "DB loaded"
   endif
 
   if !empty(s:tmpfile)
@@ -625,8 +583,14 @@ function! s:build_cscope_db(...)
   endtry
 
 endfunction
-command!  -nargs=* CSBuild call s:build_cscope_db(<f-args>)
 
+command!  -nargs=* CSBuild call s:build_cscope_db(<f-args>)
+augroup cscope
+  autocmd!
+  autocmd BufWritePost * silent! if count(['c','cpp','python'], &ft)
+    \ | call s:build_cscope_db()
+    \ | endif
+augroup END
 
 " ----------------------------------------------------------------------------
 " <leader>bs | buf-search
@@ -638,3 +602,16 @@ nnoremap <leader>bs :cex []<BAR>bufdo vimgrepadd @@g %<BAR>cw<s-left><s-left><ri
 " auto change #!! to the #!/usr/bin/env $filetype(eg. python)
 " ----------------------------------------------------------------------------
 inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype)
+
+" ----------------------------------------------------------------------------
+" :Shuffle | Shuffle selected lines
+" ----------------------------------------------------------------------------
+function! s:shuffle() range
+ruby << RB
+  first, last = %w[a:firstline a:lastline].map { |e| VIM::evaluate(e).to_i }
+  (first..last).map { |l| $curbuf[l] }.shuffle.each_with_index do |line, i|
+    $curbuf[first + i] = line
+  end
+RB
+endfunction
+command! -range Shuffle <line1>,<line2>call s:shuffle()

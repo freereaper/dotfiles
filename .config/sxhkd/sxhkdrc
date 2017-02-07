@@ -127,6 +127,10 @@ super + {Left,Down,Up,Right}
 super + button{1-3}
 	bspc pointer -g {move,resize_side,resize_corner}
 
+
+super + !button{1-3}
+	bspc pointer --track %i %i
+
 super + @button{1-3}
 	bspc pointer -u
 
