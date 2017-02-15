@@ -21,7 +21,6 @@ if [ -f "$HOME/.Xmodmap" ]; then
 fi
 
 # xclip
-autocutsel -selection CLIPBOARD -fork
 autocutsel -selection PRIMARY -fork
 
 
