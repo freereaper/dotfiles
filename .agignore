@@ -21,7 +21,9 @@
 **.cmd
 **.doc
 tags
+TAGS
 .git/
 /log
 /tmp
 /vendor
+cscope.*
