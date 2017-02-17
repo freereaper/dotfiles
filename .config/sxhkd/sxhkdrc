@@ -154,6 +154,9 @@ alt + shift + p
 alt + shift + f
 	firefox
 
+alt + shift + e
+    emacs
+
 # install by google-chrome-stable_current_amd64.deb
 alt + shift + c
 	google-chrome-stable

@@ -46,3 +46,6 @@ Thumbs.db
 
 #cscope
 cscope.*
+
+#emacs
+.dir-locals.el
