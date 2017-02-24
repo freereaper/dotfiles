@@ -19,8 +19,10 @@ URxvt.background:#1C1C1C
 URxvt.foreground:white
 
 
-URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true
-URxvt.boldFont:xft:Ubuntu Mono derivative Powerline:bold:pixelsize=16:antialias=true:hinting=true
+! URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true
+URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true,xft:汉仪细中圆简:pixelsize=16:antialias=true
+URxvt.boldFont:xft:Ubuntu Mono derivative Powerline:bold:pixelsize=16:antialias=true:hinting=true,xft:汉仪细中圆简:pixelsize=16:antialias=true
+
 
 
 URxvt.inheritPixmap:false
