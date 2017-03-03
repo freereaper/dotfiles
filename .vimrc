@@ -92,6 +92,7 @@ let s:settings.airtheme = 'tomorrow'
 	Plug 'junegunn/limelight.vim'
 	Plug 'skywind3000/asyncrun.vim'
 
+  Plug 'fcitx.vim'
 	"open plug status windows
 	nnoremap <Leader>ap :PlugStatus<cr>:only<cr>
 
