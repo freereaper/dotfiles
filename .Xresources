@@ -70,6 +70,7 @@ URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 
 
 ! Use Ctrl+[0..9] to select window in tmux
+! Use Ctrl+Tab to jump between windows.
 ! http://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux
 URxvt.keysym.C-1: \033[27;5;49~
 URxvt.keysym.C-2: \033[27;5;50~
@@ -81,6 +82,7 @@ URxvt.keysym.C-7: \033[27;5;55~
 URxvt.keysym.C-8: \033[27;5;56~
 URxvt.keysym.C-9: \033[27;5;57~
 URxvt.keysym.C-0: \033[27;5;48~
+URxvt*keysym.C-Tab: \033[27;5;9~
 
 
 ! make letters stay closer to each other, work well with font Dejavu Sans Mono for Powerline

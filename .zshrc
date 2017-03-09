@@ -211,3 +211,6 @@ export FZF_DEFAULT_OPTS="
 --color info:144,prompt:161,spinner:135,pointer:135,marker:118
 "
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Less setup : http://unix.stackexchange.com/questions/119/colors-in-man-pages
+[ -f ~/.LESS_TERMCAP ] && source ~/.LESS_TERMCAP
