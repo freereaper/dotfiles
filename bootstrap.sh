@@ -185,7 +185,7 @@ __symlink_rock "less/.LESS_TERMCAP" ".LESS_TERMCAP"
 __symlink_rock "misc/.inputrc"      ".inputrc"
 __symlink_rock "misc/.Xmodmap"      ".Xmodmap"
 __symlink_rock "misc/.editrc"       ".editrc"
-__symlink ".startup.sh"
+__symlink_rock "misc/.startup.sh"   ".startup.sh"
 __symlink ".agignore"
 __symlink ".profile"
 __symlink ".bashrc"
@@ -193,6 +193,8 @@ __symlink ".gitignore_global"
 __symlink ".npmrc"
 __symlink ".ctags"
 
+#--------------------------compton configs-------------------------------
+__symlink ".config/compton.conf"
 
 #-------------------------bootstrap-----------------------------------
 bootstrap-pyenv

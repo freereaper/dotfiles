@@ -100,3 +100,7 @@ fi
 if test -z "$P4CONFIG";then
 	export P4CONFIG=$HOME/myenv/p4.conf
 fi
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # will be called in the bspwmrc file
 
+
 if [ -f "$HOME/.Xresources" ]; then
     xrdb -merge "$HOME/.Xresources"
 fi
@@ -32,3 +33,11 @@ fi
 
 #disable dpms
 xset -dpms
+
+#fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+fcitx -d
+compton -b
+
