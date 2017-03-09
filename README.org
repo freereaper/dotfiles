@@ -1,0 +1,9 @@
+* dotfiles
+My personal dotfiles.
+
+#+BEGIN_SRC sh
+  git clone https://github.com/freereaper/dotfiles.git .dotfiles
+  cd .dotfiles
+  git checkout origin/dev -b dev
+  ./bootstrap.sh
+#+END_SRC

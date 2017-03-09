@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# will be called in the bspwmrc file
 
 if [ -f "$HOME/.Xresources" ]; then
     xrdb -merge "$HOME/.Xresources"

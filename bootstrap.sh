@@ -179,19 +179,19 @@ __clone 'https://github.com/powerline/fonts.git' '.fonts'
 
 
 #----------------------------configs-----------------------------------
-__symlink_rock "tmux/.tmux.conf" ".tmux.conf"
-__symlink_rock "misc/black.jpg" ".black"
+__symlink_rock "tmux/.tmux.conf"    ".tmux.conf"
+__symlink_rock "misc/black.jpg"     ".black"
 __symlink_rock "less/.LESS_TERMCAP" ".LESS_TERMCAP"
+__symlink_rock "misc/.inputrc"      ".inputrc"
+__symlink_rock "misc/.Xmodmap"      ".Xmodmap"
+__symlink_rock "misc/.editrc"       ".editrc"
+__symlink ".startup.sh"
 __symlink ".agignore"
 __symlink ".profile"
-__symlink ".Xmodmap"
-__symlink ".inputrc"
-__symlink ".editrc"
 __symlink ".bashrc"
 __symlink ".gitignore_global"
 __symlink ".npmrc"
 __symlink ".ctags"
-__symlink ".startup.sh"
 
 
 #-------------------------bootstrap-----------------------------------
