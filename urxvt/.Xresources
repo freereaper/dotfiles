@@ -18,15 +18,12 @@ URxvt.depth:32
 URxvt.background:#1C1C1C
 URxvt.foreground:white
 
+! URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true
+! URxvt.boldFont:xft:Ubuntu Mono derivative Powerline:bold:pixelsize=16:antialias=true:hinting=true
 
-! URxvt*font: xft:UbuntuMono-R:pixelsize=16
-! URxvt*boldFont: xft:UbuntuMono-B:pixelsize=16
+URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=17:antialias=true:hinting=true,xft:汉仪细中圆简:pixelsize=17:antialias=true
+URxvt.boldFont:xft:Ubuntu Mono derivative Powerline:bold:pixelsize=17:antialias=true:hinting=true,xft:汉仪细中圆简:pixelsize=17:antialias=true
 
-! URxvt.font:xft:Droid Sans Mono for Powerline:pixelsize=13:antialias=true:hinting=true:Regular
-! URxvt.boldFont:xft:Droid Sans Mono for Powerline:pixelsize=13:Bold
-
-URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true
-URxvt.boldFont:xft:Ubuntu Mono derivative Powerline:bold:pixelsize=16:antialias=true:hinting=true
 
 URxvt.inheritPixmap:false
 URxvt.xftAntialias:true
@@ -71,6 +68,7 @@ URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 
 
 ! Use Ctrl+[0..9] to select window in tmux
+! Use Ctrl+Tab to jump between windows.
 ! http://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux
 URxvt.keysym.C-1: \033[27;5;49~
 URxvt.keysym.C-2: \033[27;5;50~
@@ -82,7 +80,7 @@ URxvt.keysym.C-7: \033[27;5;55~
 URxvt.keysym.C-8: \033[27;5;56~
 URxvt.keysym.C-9: \033[27;5;57~
 URxvt.keysym.C-0: \033[27;5;48~
-
+URxvt*keysym.C-Tab: \033[27;5;9~
 
 ! make letters stay closer to each other, work well with font Dejavu Sans Mono for Powerline
 ! at pixelsize=12 or size=9

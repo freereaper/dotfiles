@@ -1,5 +1,7 @@
-# just copy the init.zsh to the dir where you want to place your repos
+#!/bin/bash
+# just copy the bootstrap.sh to the dir where you want to place your dotfiles, run ~./bootstrap.sh~
 
+set -e
 
 pushd `dirname $0` > /dev/null
 BASEDIR=`pwd`
@@ -13,10 +15,10 @@ function __symlink {
     fi
 }
 
-function __symlink_config {
-    if [ ! -f "$HOME/.config/$1" -a ! -d "$HOME/.config/$1" ]; then
-        echo "symlinking $BASEDIR/.config/$1  => $HOME/.config/$1"
-        ln -s "$BASEDIR/.config/$1" "$HOME/.config/$1"
+function __symlink_rock {
+    if [ ! -f "$HOME/$2" -a ! -d "$HOME/$2" ]; then
+        echo "symlinking $BASEDIR/$1  => $HOME/$2"
+        ln -s "$BASEDIR/$1" "$HOME/$2"
     fi
 }
 
@@ -118,8 +120,8 @@ function bootstrap-vim {
 # bspwm {{{
 
 function bootstrap-bspwm {
-    __symlink_config "bspwm"
-    __symlink_config "sxhkd"
+    __symlink ".config/bspwm"
+    __symlink ".config/sxhkd"
 }
 
 # }}}
@@ -175,6 +177,8 @@ fi
 # --------------------powerline font-----------------------------------
 __clone 'https://github.com/powerline/fonts.git' '.fonts'
 
+
+#----------------------------configs-----------------------------------
 __symlink '.tmux.conf'
 __symlink '.agignore'
 __symlink '.profile'
@@ -183,16 +187,13 @@ __symlink '.inputrc'
 __symlink '.editrc'
 __symlink '.bashrc'
 __symlink ".gitignore_global"
-__symlink ".Xresources"
 __symlink ".npmrc"
 __symlink ".ctags"
 __symlink ".LESS_TERMCAP"
-
-
-#-------------------------.startup.sh----------------------------------
 __symlink ".startup.sh"
 
 
+#-------------------------bootstrap-----------------------------------
 bootstrap-pyenv
 
 bootstrap-vim
