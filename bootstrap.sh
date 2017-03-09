@@ -120,6 +120,8 @@ function bootstrap-vim {
 # bspwm {{{
 
 function bootstrap-bspwm {
+    cp -f $BASEDIR/bspwm.desktop /usr/share/xsessions/
+
     __symlink ".config/bspwm"
     __symlink ".config/sxhkd"
 }

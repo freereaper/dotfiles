@@ -7,3 +7,9 @@ My personal dotfiles.
   git checkout origin/dev -b dev
   ./bootstrap.sh
 #+END_SRC
+
+** bspwm
+
+   use the version of bspwm and sxhkd in my repos.
+
+   copy bspwm.desktop to /usr/share/xsessions/
