@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -f "$HOME/.Xresources" ]; then
     xrdb -merge "$HOME/.Xresources"
@@ -26,7 +26,7 @@ autocutsel -selection PRIMARY -fork
 
 # set wallpaper
 if hash hsetroot 2>/dev/null; then
-    hsetroot -fill "$HOME/.blackjpg"
+    hsetroot -fill "$HOME/.black"
 fi
 
 #disable dpms

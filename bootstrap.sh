@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # just copy the bootstrap.sh to the dir where you want to place your dotfiles, run ~./bootstrap.sh~
 
 set -e
@@ -93,7 +93,7 @@ function bootstrap-gvm {
 
 function bootstrap-zsh {
     __clone 'https://github.com/freereaper/oh-my-zsh.git' '.oh-my-zsh'
-    __symlink ".zshrc"
+    __symlink_rock "zsh/.zshrc" ".zshrc"
 }
 
 # }}}
@@ -107,9 +107,9 @@ function bootstrap-vim {
     if [ ! -f "$HOME/.vim/autoload/plug.vim" ];then
         curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
-    __symlink ".vimrc"
-    __symlink ".vimrc-mini"
-    __symlink ".vimrc-minimal"
+    __symlink_rock "vim/.vimrc"  ".vimrc"
+    __symlink_rock "vim/.vimrc-mini" ".vimrc-mini"
+    __symlink_rock "vim/.vimrc-minimal" ".vimrc-minimal"
 }
 
 # }}}
@@ -179,17 +179,18 @@ __clone 'https://github.com/powerline/fonts.git' '.fonts'
 
 
 #----------------------------configs-----------------------------------
-__symlink '.tmux.conf'
-__symlink '.agignore'
-__symlink '.profile'
-__symlink '.Xmodmap'
-__symlink '.inputrc'
-__symlink '.editrc'
-__symlink '.bashrc'
+__symlink_rock "tmux/.tmux.conf" ".tmux.conf"
+__symlink_rock "misc/black.jpg" ".black"
+__symlink_rock "less/.LESS_TERMCAP" ".LESS_TERMCAP"
+__symlink ".agignore"
+__symlink ".profile"
+__symlink ".Xmodmap"
+__symlink ".inputrc"
+__symlink ".editrc"
+__symlink ".bashrc"
 __symlink ".gitignore_global"
 __symlink ".npmrc"
 __symlink ".ctags"
-__symlink ".LESS_TERMCAP"
 __symlink ".startup.sh"
 
 
