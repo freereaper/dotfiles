@@ -34,7 +34,7 @@ URxvt.fading:20
 URxvt.fadeColor: #453e40
 
 URxvt.perl-lib: PATH_TO_PERL_EXT
-URxvt.perl-ext-common:default,matcher,selection_to_clipboard,keyboard-select,clipboard
+URxvt.perl-ext-common:default,matcher,keyboard-select,clipboard
 URxvt.url-launcher:/usr/bin/firefox
 URxvt.matcher.button:1
 URxvt.scrollBar:false
