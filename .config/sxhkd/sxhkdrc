@@ -155,7 +155,7 @@ alt + shift + f
 	firefox
 
 alt + shift + e
-    emacs
+	LC_CTYPE=zh_CN.utf8 emacs
 
 # install by google-chrome-stable_current_amd64.deb
 alt + shift + c
