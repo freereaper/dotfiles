@@ -78,7 +78,9 @@ stty -ixon
 # https://wiki.archlinux.org/index.php/Zsh
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
-zmodload zsh/terminfo
+#zmodload zsh/terminfo
+
+typeset -A key
 
 key[Home]=${terminfo[khome]}
 

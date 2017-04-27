@@ -15,7 +15,8 @@ Xcursor.size:  22
 URxvt.saveLines:1000000
 URxvt.geometry:100x30
 URxvt.depth:32
-URxvt.background:#1C1C1C
+! aaaa indicates the transparency
+URxvt.background: rgba:0000/0000/0000/aaaa
 URxvt.foreground:white
 
 ! URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true

@@ -141,6 +141,37 @@ function bootstrap-urxvt {
 # }}}
 #-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+# tmux {{{
+
+function bootstrap-tmux {
+    if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+        mkdir -p "$HOME/.tmux/plugins"
+        git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+    fi
+    __symlink_rock "tmux/.tmux.conf"  ".tmux.conf"
+
+    ## use CTRAL-A + I to install the tmux plugins.
+}
+
+# }}}
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# beautify {{{
+
+function bootstrap-beauty {
+
+    __symlink ".config/gtk-3.0"
+    __symlink ".gtkrc-2.0"
+
+    ## polybar.
+    __symlink ".config/polybar"
+}
+
+# }}}
+#-------------------------------------------------------------------------------
+
 
 
 #-------------------------------------------------------------------------------
@@ -176,29 +207,33 @@ fi
 # }}}
 #-------------------------------------------------------------------------------
 
-# --------------------powerline font-----------------------------------
+# -------------------------powerline font---------------------------------------
+
 __clone 'https://github.com/powerline/fonts.git' '.fonts'
 
+#-------------------------------------------------------------------------------
 
-#----------------------------configs-----------------------------------
-__symlink_rock "tmux/.tmux.conf"    ".tmux.conf"
+
+
+#----------------------------------configs--------------------------------------
 __symlink_rock "misc/black.jpg"     ".black"
 __symlink_rock "less/.LESS_TERMCAP" ".LESS_TERMCAP"
 __symlink_rock "misc/.inputrc"      ".inputrc"
 __symlink_rock "misc/.Xmodmap"      ".Xmodmap"
 __symlink_rock "misc/.editrc"       ".editrc"
 __symlink_rock "misc/.startup.sh"   ".startup.sh"
+
+__symlink ".config/compton.conf"
 __symlink ".agignore"
 __symlink ".profile"
 __symlink ".bashrc"
 __symlink ".gitignore_global"
 __symlink ".npmrc"
 __symlink ".ctags"
+#-------------------------------------------------------------------------------
 
-#--------------------------compton configs-------------------------------
-__symlink ".config/compton.conf"
 
-#-------------------------bootstrap-----------------------------------
+#-----------------------------------bootstrap-----------------------------------
 bootstrap-pyenv
 
 bootstrap-vim
@@ -209,5 +244,16 @@ bootstrap-bspwm
 
 bootstrap-urxvt
 
+bootstrap-tmux
+
+bootstrap-beauty
+
+#-------------------------------------------------------------------------------
+
 export PATH="$BASEDIR/bin:$PATH"
 
+if [ $(hostname) = "T450s" ]; then
+    echo "t450s"
+elif [ $(hostname) = "zhaoxin" ]; then
+    echo "zhaoxin"
+fi

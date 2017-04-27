@@ -2,9 +2,9 @@
 # will be called in the bspwmrc file
 
 
-if [ -f "$HOME/.Xresources" ]; then
-    xrdb -merge "$HOME/.Xresources"
-fi
+#if [ -f "$HOME/.Xresources" ]; then
+#    xrdb -merge "$HOME/.Xresources"
+#fi
 
 xsetroot -cursor_name left_ptr
 
@@ -23,7 +23,7 @@ if [ -f "$HOME/.Xmodmap" ]; then
 fi
 
 # xclip
-autocutsel -selection PRIMARY -fork
+#autocutsel -selection PRIMARY -fork
 
 
 # set wallpaper
@@ -35,7 +35,7 @@ fi
 xset -dpms
 
 #fcitx
-fcitx -d
+#fcitx -d
 
-compton -b
+#compton -b
 

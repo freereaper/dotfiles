@@ -1,8 +1,19 @@
 #! /bin/sh
 
+ws0=web
+ws1=term
+ws2=chat
+ws3=code
+ws4=music
+ws5=util
+ws6=apple
+ws7=panda
+ws8=work
+ws9=reaper
+
 sxhkd &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
 
 # Take note:
 # If the computer is already running with just its default monitor, then you
@@ -40,19 +51,19 @@ else
     if [[ -e $TLPC ]]; then
         xrandr --output HDMI-0 --primary
         xrandr --output VGA-0 --right-of HDMI-0
-        bspc monitor ^1 --reset-desktops 1
+        bspc monitor ^1 --reset-desktops $ws0
         bspc config -m ^1 top_padding 10
 
-        bspc monitor ^2 --reset-desktops 2 web 4 5 6 7 8 9 10
+        bspc monitor ^2 --reset-desktops $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
         bspc config -m ^2 top_padding 10
     else
-        bspc monitor ^1 --reset-desktops 1 2 web 4 5 6 7 8 9 10
+        bspc monitor ^1 --reset-desktops $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
         bspc config -m ^1 top_padding 10
     fi
 fi
 
 
-bspc config top_padding 0
+bspc config top_padding 15
 bspc config auto_cancel true
 #bspc conifg normal_border_color	 	none
 bspc config active_border_color		"#504339"
