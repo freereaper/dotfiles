@@ -28,7 +28,7 @@ autocutsel -selection PRIMARY -fork
 
 # set wallpaper
 if hash hsetroot 2>/dev/null; then
-    hsetroot -fill "$HOME/.black"
+    hsetroot -tile "$HOME/.black"
 fi
 
 #disable dpms

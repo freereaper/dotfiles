@@ -27,7 +27,7 @@ let s:settings.max_column = 120
 let s:settings.autocomplete_method = 'ycm'
 let s:settings.enable_cursorcolumn = 0
 let s:settings.colorscheme = 'Tomorrow-Night-Eighties'
-let s:settings.airtheme = 'tomorrow'
+let s:settings.airtheme = 'tender'
 
 " }}}
 
@@ -157,6 +157,7 @@ let s:settings.airtheme = 'tomorrow'
 	"*******************************************************************
 
 	exec 'colorscheme '.s:settings.colorscheme
+  hi Normal ctermbg=none
 " }}} end colors cfg
 "------------------------------------------------------------------------------
 

@@ -17,6 +17,7 @@
 *.*.sock
 
 # utils
+*.raw
 *.o
 **.cmd
 **.doc
