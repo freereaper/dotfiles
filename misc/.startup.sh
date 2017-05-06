@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
 # will be called in the bspwmrc file
 
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
 
-#if [ -f "$HOME/.Xresources" ]; then
-#    xrdb -merge "$HOME/.Xresources"
-#fi
+fcitx -d
 
-xsetroot -cursor_name left_ptr
+# autocutsel
+autocutsel -selection PRIMARY -fork
+
+# make keyboard response faster
+xset r rate 200 30
+
+if [ -f "$HOME/.Xresources" ]; then
+    xrdb -merge "$HOME/.Xresources"
+fi
 
 #add private fonts
 if [ -d "$HOME/.fonts" ]; then
@@ -14,28 +23,27 @@ if [ -d "$HOME/.fonts" ]; then
     xset fp rehash
 fi
 
-#make keyboard response faster
-xset r rate 200 30
-
 # enable natural scrolling and remap Caps Lock key to become left Ctrl
 if [ -f "$HOME/.Xmodmap" ]; then
     xmodmap "$HOME/.Xmodmap"
 fi
-
-# xclip
-#autocutsel -selection PRIMARY -fork
-
 
 # set wallpaper
 if hash hsetroot 2>/dev/null; then
     hsetroot -tile "$HOME/.black"
 fi
 
+xsetroot -cursor_name left_ptr
+
 #disable dpms
-xset -dpms
+if [ $(hostname) = "zhaoxin" ]; then
+    xset -dpms
+fi
 
-#fcitx
-#fcitx -d
+# Mixed effect
+compton --config ~/.dotfiles/.config/.compton.conf.t450s -b
 
-#compton -b
+polybar main &
 
+# dropbox
+/opt/dropbox/dropboxd &

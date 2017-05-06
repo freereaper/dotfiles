@@ -226,6 +226,7 @@ __symlink_rock "misc/.Xmodmap"      ".Xmodmap"
 __symlink_rock "misc/.editrc"       ".editrc"
 __symlink_rock "misc/.startup.sh"   ".startup.sh"
 
+__symlink ".xinitrc"
 __symlink ".config/compton.conf"
 __symlink ".agignore"
 __symlink ".profile"

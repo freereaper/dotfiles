@@ -103,3 +103,8 @@ fi
 
 # set for gtags
 export GTAGSLABEL=pygments
+
+# fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
