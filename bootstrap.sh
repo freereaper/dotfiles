@@ -165,8 +165,11 @@ function bootstrap-beauty {
     __symlink ".config/gtk-3.0"
     __symlink ".gtkrc-2.0"
 
-    ## polybar.
+    # polybar.
     __symlink ".config/polybar"
+
+    # ranger
+    __symlink ".config/ranger"
 }
 
 # }}}

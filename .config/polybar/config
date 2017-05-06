@@ -63,8 +63,8 @@ font-1 = FontAwesome:size=10;-2
 ;font-1 = FontAwesome:size=10:weight=heavy
 font-2 = Wuncon Siji:pixelsize=10;-2
 
-modules-left = bspwm xwindow
-modules-center =
+modules-left = bspwm
+modules-center = xwindow
 modules-right = cpu volume wifi date battery
 
 tray-position = right
