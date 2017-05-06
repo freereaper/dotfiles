@@ -141,28 +141,34 @@ super + @button{1-3}
 
 # switch to another monitor
 super + alt + {Left,Right}
-	bspc monitor -f {next, prev}
+    bspc monitor -f {next, prev}
 
 # move the current window to next monitor
 super + {_,shift + }{Left,Right}
-	bspc {monitor -f, node -m} {next,prev}
+    bspc {monitor -f, node -m} {next,prev}
 
 # some misc settings
 alt + shift + p
-	p4v
+    p4v
+
+alt + shift + t
+    thunar
 
 alt + shift + f
 	firefox
 
+alt + shift + r
+    rofi -show run
+
 alt + shift + e
-	LC_CTYPE=zh_CN.utf8 emacs
+    LC_CTYPE=zh_CN.utf8 emacs
 
 # install by google-chrome-stable_current_amd64.deb
 alt + shift + c
-	google-chrome-stable
+    chromium
 
-alt + shift + m
-	remmina
+alt + shift + w
+    urxvt -e ranger
 
 alt + shift + b
     bcompare
