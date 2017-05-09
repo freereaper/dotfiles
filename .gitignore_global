@@ -51,4 +51,8 @@ cscope.*
 .dir-locals.el
 setupfile.html
 
+#gtags
+GPATH
+GRTAGS
+GTAGS
 

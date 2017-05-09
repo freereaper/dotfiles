@@ -197,7 +197,7 @@ if [ ! -f "$HOME/.gitconfig" ]; then
     echo "  lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all" >> "$HOME/.gitconfig"
 
     echo "[core]" >> "$HOME/.gitconfig"
-    echo "  excludefile = $HOME/.gitignore_global" >> "$HOME/.gitconfig"
+    echo "  excludesfile = $HOME/.gitignore_global" >> "$HOME/.gitconfig"
     echo "  editor = vim" >> "$HOME/.gitconfig"
 
     echo "[branch]" >> "$HOME/.gitconfig"
