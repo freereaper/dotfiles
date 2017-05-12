@@ -128,7 +128,7 @@ COMMAND_PROMPT="gray"
 
 # helper for setting color including all kinds of terminals
 set_prompt_color() {
-    if [[ $TERM = "linux" ]]; then
+    if [[ $TERM = "linux" ||  $TERM = "eterm-color" ]]; then
        # nothing
     elif [[ $TMUX != '' ]]; then
         printf '\033Ptmux;\033\033]12;%b\007\033\\' "$1"

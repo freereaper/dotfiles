@@ -120,8 +120,6 @@ let s:settings.airtheme = 'molokai'
 		"	set termguicolors
 		"endif
 	endif
-
-  "hi Normal ctermbg=NONE
 "} /* end of general cfg */
 "------------------------------------------------------------------------------
 
