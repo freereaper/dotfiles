@@ -12,6 +12,7 @@ gems.tags
 *.exe
 *.o
 *.so
+*.pyo
 
 # Packages #
 # it's better to unpack these files and commit the raw source

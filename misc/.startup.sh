@@ -29,21 +29,20 @@ if [ -f "$HOME/.Xmodmap" ]; then
 fi
 
 # set wallpaper
-if hash hsetroot 2>/dev/null; then
-    hsetroot -tile "$HOME/.black"
+if hash feh 2>/dev/null; then
+    feh --bg-sclae "$HOME/.black"
 fi
 
 xsetroot -cursor_name left_ptr
 
-#disable dpms
-if [ $(hostname) = "zhaoxin" ]; then
-    xset -dpms
-fi
-
 # Mixed effect
 compton --config ~/.dotfiles/.config/.compton.conf.t450s -b
 
-polybar main &
-
-# dropbox
-/opt/dropbox/dropboxd &
+if [ $(hostname) = "zhaoxin" ]; then
+    # keep the screen light
+    xset -dpms
+    (http_proxy="http://10.30.24.3:985" /opt/dropbox/dropboxd &)&
+elif [ $(hostname) = "T450s" ]; then
+    polybar main &
+    /opt/dropbox/dropboxd &
+fi
