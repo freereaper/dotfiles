@@ -30,7 +30,7 @@ fi
 
 # set wallpaper
 if hash feh 2>/dev/null; then
-    feh --bg-sclae "$HOME/.black"
+    feh --bg-scale "$HOME/.black"
 fi
 
 xsetroot -cursor_name left_ptr
