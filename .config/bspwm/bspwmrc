@@ -79,13 +79,14 @@ bspc config focus_by_distance    true
 bspc config history_aware_focus  true
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Google-chrome desktop='^6' state=floating focus=on border=off
-bspc rule -a firefox desktop='^5' border=off
+bspc rule -a Google-chrome desktop='^7' state=floating focus=on border=off
+bspc rule -a Firefox desktop='^6' state=fullscreen focus=on  border=off
 bspc rule -a remmina desktop='^9'
 
+#use 'xprop | awk '/WM_CLASS/{print $4}' to print the prog name you clicks
+bspc rule -a P4v.bin desktop='^4' state=fullscreen
+bspc rule -a Sublime_text desktop='^5' state=fullscreen
 
-bspc rule -a p4v desktop='^4'
-bspc rule -a "p4v.bin" desktop='^4'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off

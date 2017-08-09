@@ -19,6 +19,7 @@
 # utils
 *.raw
 *.o
+*.a
 **.cmd
 **.doc
 tags
@@ -27,3 +28,10 @@ TAGS
 /log
 /tmp
 /vendor
+
+#zx
+s3_graphics/
+build/
+*.toc
+*.cfg
+*.xml

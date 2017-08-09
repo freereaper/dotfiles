@@ -26,8 +26,9 @@ let s:settings.default_indent = 2
 let s:settings.max_column = 120
 let s:settings.autocomplete_method = 'ycm'
 let s:settings.enable_cursorcolumn = 0
-let s:settings.colorscheme = 'Tomorrow-Night-Eighties'
-let s:settings.airtheme = 'molokai'
+"let s:settings.colorscheme = 'Tomorrow-Night-Eighties'
+let s:settings.colorscheme = 'molokai'
+let s:settings.airtheme = 'jellybeans'
 
 " }}}
 
@@ -445,9 +446,10 @@ let s:settings.airtheme = 'molokai'
 "------------------------------------------------------------------------------
 " ag cfg {
 	if executable('ag')
-		set grepprg=ag\ --nogroup\ --nocolor
-			let g:ag_highlight=1
+		let g:ag_prg="ag --vimgrep --smart-case --follow"
+		let g:ag_highlight=0
 		let g:ag_working_path_mode='r'
+    let g:ag_apply_qmappings=1
 	endif
 " } /* end of ag cfg */
 "------------------------------------------------------------------------------
