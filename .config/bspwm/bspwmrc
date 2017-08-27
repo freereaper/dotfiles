@@ -13,70 +13,86 @@ ws9=reaper
 
 sxhkd &
 
-bspc monitor -d $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
-
-# Take note:
-# If the computer is already running with just its default monitor, then you
-# wanna plug in an external monitor to use with bspwm, you must first use xrandr
-# to output to that external monitor first. For example we plugin a HDMI
-# monitor. First:
-#   xrandr --output HDMI1 --mode 1920x1080
-# then run:
-#   ~/.config/bspwm/bspwmrc
-num_mon=$(bspc query -M | wc -l)
-if [ $num_mon -gt 1 ] ; then
-
-    # for Acer Aspire V11 Touch
-    # xrandr --output eDP1 --primary
-    # xrandr --output HDMI1 --mode 1920x1080 --left-of eDP1
-
-    # for HP Pavilion dm3 laptop
-    # xrandr --output LVDS1 --primary
-    # xrandr --output VGA1 --mode 1920x1080 --left-of LVDS1
-
-    # for VirtualBox at work
-    xrandr --output HDMI-1 --primary
-    # xrandr --output VGA-1 --mode 1920x1016 --right-of VGA-0
-    xrandr --output VGA-1 --right-of VGA-0
-
-    # first native monitor
-    bspc monitor ^1 --reset-desktops 1
-    bspc config -m ^1 top_padding 10
-
-    # external monitor exists, so we prefer to use it instead of the native
-    # small size monitor
-    bspc monitor ^2 --reset-desktops 2 web 4 5 6 7 8 9 10
-    bspc config -m ^2 top_padding 10
-else
-    if [[ -e $TLPC ]]; then
-        xrandr --output HDMI-0 --primary
-        xrandr --output VGA-0 --right-of HDMI-0
-        bspc monitor ^1 --reset-desktops $ws0
-        bspc config -m ^1 top_padding 10
-
-        bspc monitor ^2 --reset-desktops $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
-        bspc config -m ^2 top_padding 10
-    else
-        bspc monitor ^1 --reset-desktops $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
-        bspc config -m ^1 top_padding 10
-    fi
-fi
+#bspc monitor -d $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
 
 
-bspc config top_padding 15
-bspc config auto_cancel true
-#bspc conifg normal_border_color	 	none
-bspc config active_border_color		"#504339"
-bspc config focused_border_color	 "#77dd77"
+MONITOR_LIST=$(xrandr --listmonitors | sed '1 d' | awk 'NF>1{print $NF}')
+MON_NUM=$(bspc query -M | wc -l)
+HOSTNAME=`hostname`
+POLYBAR_RIGHT_ENABLE=true
+MONITOR_MAIN=
+MONITOR_RIGHT=
 
-bspc config border_width        2
+
+export MONITOR_LIST
+export MONITOR_NUM
+export HOSTNAME
+export POLYBAR_RIGHT_ENABLE
+export MONITOR_{MAIN,RIGHT}
+
+case $HOSTNAME in
+    "T450s")
+        #TODO: maxium support two monitors
+        if [ $MON_NUM -gt 1 ]; then
+
+            for mon in $MONITOR_LIST; do
+                if [ $mon = "eDP1" ]; then
+                    MONITOR_MAIN=$mon
+                else
+                    MONITOR_RIGHT=$mon
+                fi
+            done
+
+            # enable or disable polybar on the second monitor
+            if [ "$POLYBAR_RIGHT_ENABLE" = true ]; then
+                #bspc monitor $MONITOR_MAIN -d $ws1
+                #bspc monitor $MONITOR_RIGHT -d $ws0 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
+                bspc monitor $MONITOR_MAIN --reset-desktops term web code ws_4 ws_5 ws_6 ws_7 ws_8 music irssi
+                bspc monitor $MONITOR_RIGHT --reset-desktops term web code ws_4 ws_5 ws_6 ws_7 ws_8 ws_9 ws_0
+            else
+                bspc monitor $MONITOR_MAIN -d  $ws1 $ws2 $ws3 $ws4 $ws5
+                bspc monitor $MONITOR_RIGHT -d $ws6 $ws7 $ws8 $ws9 $ws0
+            fi
+
+            xrandr --output $MONITOR_RIGHT --right-of $MONITOR_MAIN
+
+
+        else
+            bspc monitor ^1 -d $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
+            bspc config -m ^1 top_padding 15
+        fi
+
+
+        bspc config focused_border_color "#ac7311"
+        bspc config normal_border_color  "#3F3E3B"
+
+        ;;
+
+    "zhaoxin")
+        #TODO
+        bspc config focused_border_color "#77dd77"
+        bspc config normal_border_color  "#3F3E3B"
+
+        ;;
+esac
+
+#When focusing a monitor, put the pointer at its center
+bspc config focus_follows_monitor true
+bspc config pointer_modifier  mod1
+
+bspc config ignore_ewmh_focus   true
+bspc config initial_polarity    second_child
+bspc config presel_feedback_color        "#26262b"
+
+bspc config top_padding         15
+bspc config border_width        3
 bspc config window_gap          8
 
 bspc config split_ratio          0.50
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
-bspc config focus_by_distance    true
 bspc config history_aware_focus  true
+bspc config focus_follows_pointer true
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Google-chrome desktop='^7' state=floating focus=on border=off

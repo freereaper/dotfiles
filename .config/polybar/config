@@ -1,227 +1,378 @@
 [colors]
-darkgray =  #ee2f343f
-orange = #f72f343f
-white = #ebdbb2
-background = #262626
-background-alt = #444
-foreground = #f3f4f5
-#foreground-alt = #4e4e4e
-foreground-alt = #55
-foreground-dim = #676e7d
-primary = #ffb52a
-secondary = #e60053
-alert = #fb4934
-
-high = #268bd2
-high-alt = #0c2b41
+    darkgray =  #ee2f343f
+    orange = #f72f343f
+    white = #ebdbb2
+    background = #262626
+    background-alt = #444
+    foreground = #f3f4f5
+    #foreground-alt = #4e4e4e
+    foreground-alt = #55
+    foreground-dim = #676e7d
+    primary = #ffb52a
+    secondary = #e60053
+    alert = #fb4934
+    high = #268bd2
+    high-alt = #0c2b41
 
 
 [settings]
-; The throttle settings lets the eventloop swallow up til X events
-; if they happen within Y millisecond after first event was received.
-; This is done to prevent flood of update event.
-;
-; For example if 5 modules emit an update event at the same time, we really
-; just care about the last one. But if we wait too long for events to swallow
-; the bar would appear sluggish so we continue if timeout
-; expires or limit is reached.
-throttle-output = 5
-throttle-output-for = 10
+    ; The throttle settings lets the eventloop swallow up til X events
+    ; if they happen within Y millisecond after first event was received.
+    ; This is done to prevent flood of update event.
+    ;
+    ; For example if 5 modules emit an update event at the same time, we really
+    ; just care about the last one. But if we wait too long for events to swallow
+    ; the bar would appear sluggish so we continue if timeout
+    ; expires or limit is reached.
+    ;throttle-output = 5
+    ;throttle-output-for = 10
 
-; Time in milliseconds that the input handler will wait between processing events
-throttle-input-for = 30
+    ; Time in milliseconds that the input handler will wait between processing events
+    ;throttle-input-for = 30
 
-; Reload upon receiving XCB_RANDR_SCREEN_CHANGE_NOTIFY events
-screenchange-reload = true
+    ; Reload upon receiving XCB_RANDR_SCREEN_CHANGE_NOTIFY events
+    screenchange-reload = true
+
+
+[global/wm]
+    margin-top = 0
+    margin-bottom = 0
+
+
+[wm/bspwm]
+    reconfigure-workspaces = false
+    restart-window = false
+
+
+[bar/base]
+    width = 100%
+    height = 20
+
+    radius = 0.0
+    fixed-center = true
+
+    background = ${colors.background}
+    foreground = ${colors.foreground}
+
+    line-size = 2
+    line-color = #f00
+
+    border-size = 0
+    border-color = #00000000
+
+    padding-left = 0
+    padding-right = 2
+
+    module-margin-left = 1
+    module-margin-right = 2
+
+    ;tray-position = right
+    ;tray-padding = 2
+    ;tray-background = ${colors.background}
+
+    ;underline-size = 2
+
+    wm-restack = bspwm
+
+    ;font-0 = Noto Sans Regular:pixelsize=12;0
+    font-0 = fixed:pixelsize=10;1
+    font-1 = FontAwesome:size=10;-2
+    font-2 = Wuncon Siji:pixelsize=10;-2
+
+    modules-center = bspwm
+    ;override-redirect = true
+
+    ;scroll-up = bspwm-desknext
+    ;scroll-down = bspwm-deskprev
+
+# used combined with "env MONITOR=$mon polybar $(hostname) &"
+[bar/main.T450s]
+    inherit = bar/base
+    monitor = ${env:MONITOR_MAIN:eDP1}
+
+    tray-position = right
+    tray-padding = 2
+    tray-background = ${colors.background}
+
+    modules-left = cpu memory volume wifi 
+    modules-right = date battery powermenu
+
 
 [bar/main]
-top = true
-override-redirect = true
-width = 100%
-height = 20
-dpi=72
-#background = #333232
-#foreground = #a7a5a5
-background = #222
-foreground = #dfdfdf
+    inherit = bar/base
+    monitor = ${env:MONITOR_MAIN:eDP1}
 
-overline-size = 0
-overline-color = #f00
-underline-size = 2
-underline-color = #00f
+    tray-position = right
+    tray-padding = 2
+    tray-background = ${colors.background}
 
-border-bottom-size = 0
-border-bottom-color = ${colors.background}
+    modules-left = cpu memory volume wifi 
+    modules-right = date battery
 
-padding-left = 0
-padding-right = 2
-module-margin-left = 1
-module-margin-right = 2
 
-font-0 = Noto Sans Regular:pixelsize=12;0
-font-1 = FontAwesome:size=10;-2
-;font-1 = FontAwesome:size=10:weight=heavy
-font-2 = Wuncon Siji:pixelsize=10;-2
-
-modules-left = bspwm
-modules-center = xwindow
-modules-right = cpu volume wifi date battery
-
-tray-position = right
-
-wm-restack = bspwm
+[bar/right]
+    inherit= bar/base
+    monitor = ${env:MONITOR_RIGHT}
 
 [module/theme]
-format-background = ${colors.background}
-format-padding = 2
-format-foreground = ${self.format-underline}
+    format-background = ${colors.background}
+    format-padding = 2
+    format-foreground = ${self.format-underline}
 
-format-connected-background = ${module/theme.format-background}
-format-unconnected-background = ${module/theme.format-background}
-format-mounted-background = ${module/theme.format-background}
-format-unmounted-background = ${module/theme.format-background}
-format-charging-background = ${module/theme.format-background}
-format-discharging-background = ${module/theme.format-background}
+    format-connected-background = ${module/theme.format-background}
+    format-unconnected-background = ${module/theme.format-background}
+    format-mounted-background = ${module/theme.format-background}
+    format-unmounted-background = ${module/theme.format-background}
+    format-charging-background = ${module/theme.format-background}
+    format-discharging-background = ${module/theme.format-background}
 
-format-connected-padding = ${module/theme.format-padding}
-format-unconnected-padding = ${module/theme.format-padding}
-format-mounted-padding = ${module/theme.format-padding}
-format-unmounted-padding = ${module/theme.format-padding}
-format-charging-padding = ${module/theme.format-padding}
-format-discharging-padding = ${module/theme.format-padding}
+    format-connected-padding = ${module/theme.format-padding}
+    format-unconnected-padding = ${module/theme.format-padding}
+    format-mounted-padding = ${module/theme.format-padding}
+    format-unmounted-padding = ${module/theme.format-padding}
+    format-charging-padding = ${module/theme.format-padding}
+    format-discharging-padding = ${module/theme.format-padding}
 
-format-mounted-foreground = ${self.format-mounted-underline}
-format-unmounted-foreground = ${self.format-unmounted-underline}
+    format-mounted-foreground = ${self.format-mounted-underline}
+    format-unmounted-foreground = ${self.format-unmounted-underline}
+
 
 [module/cpu]
-inherit = module/theme
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-underline = #d33636
-label = %percentage%
+    inherit = module/theme
+    type = internal/cpu
+    interval = 2
+    format-prefix = " "
+    format-underline = #d33636
+    label = %percentage%
+
 
 [module/xwindow]
-type = internal/xwindow
-label = "   %{F#5b5b5b}%{F-} %title:0:60:...%"
-label-background = ${colors.background-alt}
-label-padding = 2
-format-underline = ${colors.high}
+    type = internal/xwindow
+    label = "%{F#5b5b5b}%{F-} %title:0:60:...%"
+    label-background = ${colors.background-alt}
+    format-underline = ${colors.high}
+
 
 [module/date]
-inherit = module/theme
-type = internal/date
-interval = 1
+    type = internal/date
+    interval = 1
 
-time = "%a - %d.%m.%Y - %H:%M:%S"
-time-alt = "%a - %d.%m.%Y - %I:%M %p"
+    date =
+    date-alt = " %Y-%m-%d"
 
-format-prefix = " "
-format-underline = ${colors.foreground}
+    time = %H:%M:%S
+    time-alt = %H:%M:%S
 
-label = %date% %time%
-[module/ram]
-type = internal/memory
-label = RAM: %percentage_used%
+    format-prefix = 
+    format-prefix-foreground = ${colors.foreground-alt}
+
+    format-underline = ${colors.foreground}
+
+    label = %date% %time%
+
+
+[module/memory]
+    type = internal/memory
+    interval = 2
+    format-prefix = " "
+    format-prefix-foreground = ${colors.foreground-alt}
+    format-underline = #4bffdc
+    label = %percentage_used%
 
 [module/clock]
-type = internal/date
-date =  %d-%m-%Y %H:%M
+    type = internal/date
+    date =  %d-%m-%Y %H:%M
 
 [module/wifi]
-inherit = module/theme
-type = internal/network
-interface = wlp3s0
-interval = 3
-ping_interval = 3
+    inherit = module/theme
+    type = internal/network
+    interface = wlp3s0
+    interval = 3
+    ping_interval = 3
 
-format-connected = <label-connected>
-format-connected-underline = #268bd2
-format-disconnected-underline = ${colors.alert}
+    format-connected = <label-connected>
+    format-connected-underline = #268bd2
+    format-disconnected-underline = ${colors.alert}
 
-;label-connected =  %essid% [%local_ip%]
-label-connected =  %essid% [  %downspeed:1:3% ] [  %upspeed:1:3% ]
-label-disconnected = "OFFLINE"
-label-connected-foreground = ${colors.high}
-label-disconnected-foreground = ${colors.alert}
+    ;label-connected =  %essid% [%local_ip%]
+    label-connected =  %essid% [  %downspeed:1:3% ] [  %upspeed:1:3% ]
+    label-disconnected = "OFFLINE"
+    label-connected-foreground = ${colors.high}
+    label-disconnected-foreground = ${colors.alert}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+    ramp-signal-0 = 
+    ramp-signal-1 = 
+    ramp-signal-2 = 
+    ramp-signal-3 = 
+    ramp-signal-4 = 
+    ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/volume]
-inherit = module/theme
-type = internal/volume
-master_mixer = Master
-format-volume =    <label-volume>
-label-muted =  muted
+    type = internal/volume
+
+    format-volume = <label-volume> <bar-volume>
+    label-volume = ""
+    label-volume-foreground = ${root.foreground}
+
+    format-muted-prefix = " "
+    format-muted-foreground = ${colors.foreground-alt}
+    label-muted = Muted
+
+    bar-volume-width = 10
+    bar-volume-foreground-0 = #55aa55
+    bar-volume-foreground-1 = #55aa55
+    bar-volume-foreground-2 = #55aa55
+    bar-volume-foreground-3 = #55aa55
+    bar-volume-foreground-4 = #55aa55
+    bar-volume-foreground-5 = #f5a70a
+    bar-volume-foreground-6 = #ff5555
+    bar-volume-gradient = false
+    bar-volume-indicator = |
+    bar-volume-indicator-font = 2
+    bar-volume-fill = ─
+    bar-volume-fill-font = 2
+    bar-volume-empty = ─
+    bar-volume-empty-font = 2
+    bar-volume-empty-foreground = ${colors.foreground-alt}
+
 
 [module/bspwm]
-type = internal/bspwm
+    type = internal/bspwm
 
-ws-icon-0 = web;
-ws-icon-1 = term;
-ws-icon-2 = chat;
-ws-icon-3 = code;
-ws-icon-4 = music;
-ws-icon-5 = util;
-ws-icon-6 = apple;
-ws-icon-7 = panda;
-ws-icon-8 = work;
-ws-icon-9 = reaper;
-ws-icon-default = 
+    label-focused = %index%
+    label-focused-background = ${colors.background-alt}
+    label-focused-underline= ${colors.primary}
+    label-focused-padding = 2
 
-format = <label-state> <label-mode>
+    label-occupied = %index%
+    label-occupied-padding = 2
 
-label-focused = %icon%
-;label-focused-background = ${colors.background-alt}
-label-focused-background = #111
-label-focused-underline= #f3f99d
-label-focused-padding = 2
+    label-urgent = %index%!
+    label-urgent-background = ${colors.alert}
+    label-urgent-padding = 2
 
-label-occupied = %icon%
-label-occupied-padding = 2
+    label-empty = %index%
+    label-empty-foreground = ${colors.foreground-alt}
+    label-empty-padding = 2
 
-label-urgent = %icon%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+[module/bspwm1]
+    type = internal/bspwm
 
-label-empty = %icon%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
+    ws-icon-0 = web;
+    ws-icon-1 = term;
+    ws-icon-2 = chat;
+    ws-icon-3 = code;
+    ws-icon-4 = music;
+    ws-icon-5 = util;
+    ws-icon-6 = apple;
+    ws-icon-7 = panda;
+    ws-icon-8 = work;
+    ws-icon-9 = reaper;
+    ws-icon-default = 
 
-label-monocle = 
-label-monocle-foreground = #55FFFFFF
+    format = <label-state> <label-mode>
+
+    label-focused = %icon%
+    ;label-focused-background = ${colors.background-alt}
+    label-focused-background = #111
+    label-focused-underline= #f3f99d
+    label-focused-padding = 2
+
+    label-occupied = %icon%
+    label-occupied-padding = 2
+
+    label-urgent = %icon%!
+    label-urgent-background = ${colors.alert}
+    label-urgent-padding = 2
+
+    label-empty = %icon%
+    label-empty-foreground = ${colors.foreground-alt}
+    label-empty-padding = 2
+
+    label-monocle = 
+    label-monocle-foreground = #55FFFFFF
 
 [module/battery]
-type = internal/battery
-battery = BAT0
-adapter = ADP1
-full-at = 98
+    type = internal/battery
+    battery = BAT0
+    adapter = ADP1
+    full-at = 98
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #f3f99d
+    format-charging = <animation-charging> <label-charging>
+    format-charging-underline = #ffb52a
 
-format-discharging = <ramp-capacity> <label-discharging>
-label-full = %percentage%
+    format-discharging = <ramp-capacity> <label-discharging>
+    format-discharging-underline = ${self.format-charging-underline}
 
-format-discharging-underline = ${self.format-charging-underline}
+    format-full-prefix = " "
+    format-full-prefix-foreground = ${colors.foreground-alt}
+    format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-0-foreground = ${colors.alert}
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+    ramp-capacity-0 = 
+    ramp-capacity-1 = 
+    ramp-capacity-2 = 
+    ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
+    animation-charging-0 = 
+    animation-charging-1 = 
+    animation-charging-2 = 
+    animation-charging-foreground = ${colors.foreground-alt}
+    animation-charging-framerate = 750
+
+[module/battery1]
+    type = internal/battery
+    battery = BAT0
+    adapter = ADP1
+    full-at = 98
+
+    format-charging = <animation-charging> <label-charging>
+    format-charging-underline = #f3f99d
+
+    format-discharging = <ramp-capacity> <label-discharging>
+    label-full = %percentage%
+
+    format-discharging-underline = ${self.format-charging-underline}
+
+    ramp-capacity-0 = 
+    ramp-capacity-0-foreground = ${colors.alert}
+    ramp-capacity-1 = 
+    ramp-capacity-2 = 
+    ramp-capacity-3 = 
+    ramp-capacity-4 = 
+    ramp-capacity-foreground = ${colors.foreground-alt}
+
+    animation-charging-0 = 
+    animation-charging-1 = 
+    animation-charging-2 = 
+    animation-charging-3 = 
+    animation-charging-4 = 
+    animation-charging-foreground = ${colors.foreground-alt}
+    animation-charging-framerate = 750
+
+
+[module/powermenu]
+    type = custom/menu
+
+    format-spacing = 1
+
+    label-open = 
+    label-open-foreground = ${colors.secondary}
+    label-close =  cancel
+    label-close-foreground = ${colors.secondary}
+    label-separator = |
+    label-separator-foreground = ${colors.foreground-alt}
+
+    menu-0-0 = reboot
+    menu-0-0-exec = menu-open-1
+    menu-0-1 = power off
+    menu-0-1-exec = menu-open-2
+
+    menu-1-0 = cancel
+    menu-1-0-exec = menu-open-0
+    menu-1-1 = reboot
+    menu-1-1-exec = sudo reboot
+
+    menu-2-0 = power off
+    menu-2-0-exec = sudo poweroff
+    menu-2-1 = cancel
+    menu-2-1-exec = menu-open-0

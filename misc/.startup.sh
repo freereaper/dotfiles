@@ -20,7 +20,7 @@ fi
 #add private fonts
 if [ -d "$HOME/.fonts" ]; then
     xset fp+ "$HOME/.fonts"
-    xset fp rehash
+    xset fp rehash &
 fi
 
 # enable natural scrolling and remap Caps Lock key to become left Ctrl
@@ -33,6 +33,9 @@ if hash feh 2>/dev/null; then
     feh --bg-scale "$HOME/.black"
 fi
 
+# for debug
+echo $MONITOR_MAIN
+
 xsetroot -cursor_name left_ptr
 
 # Mixed effect
@@ -43,6 +46,16 @@ if [ $(hostname) = "zhaoxin" ]; then
     xset -dpms
     (http_proxy="http://10.30.24.3:985" /opt/dropbox/dropboxd &)&
 elif [ $(hostname) = "T450s" ]; then
-    polybar main &
+    #for mon in $MONITOR_LIST; do
+    #    echo "Lauching on monitor $mon"
+    #    env MONITOR=$mon polybar $(hostname) &
+    #done
+
+    polybar main.$(hostname) &
+
+    if [ "$POLYBAR_RIGHT_ENABLE" = true ]; then
+        polybar right &
+    fi
+
     /opt/dropbox/dropboxd &
 fi
