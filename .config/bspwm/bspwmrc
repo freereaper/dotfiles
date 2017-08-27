@@ -47,11 +47,11 @@ case $HOSTNAME in
             if [ "$POLYBAR_RIGHT_ENABLE" = true ]; then
                 #bspc monitor $MONITOR_MAIN -d $ws1
                 #bspc monitor $MONITOR_RIGHT -d $ws0 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
-                bspc monitor $MONITOR_MAIN --reset-desktops term web code ws_4 ws_5 ws_6 ws_7 ws_8 music irssi
-                bspc monitor $MONITOR_RIGHT --reset-desktops term web code ws_4 ws_5 ws_6 ws_7 ws_8 ws_9 ws_0
+                bspc monitor $MONITOR_MAIN --reset-desktops $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
+                bspc monitor $MONITOR_RIGHT --reset-desktops $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
             else
-                bspc monitor $MONITOR_MAIN -d  $ws1 $ws2 $ws3 $ws4 $ws5
-                bspc monitor $MONITOR_RIGHT -d $ws6 $ws7 $ws8 $ws9 $ws0
+                bspc monitor $MONITOR_MAIN -d  $ws1
+                bspc monitor $MONITOR_RIGHT -d $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9 $ws0
             fi
 
             xrandr --output $MONITOR_RIGHT --right-of $MONITOR_MAIN
