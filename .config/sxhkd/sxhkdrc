@@ -168,28 +168,29 @@ super + ctrl + shift + space
 
 # move a floating window
 super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # Resize current window
 super + r : {_,shift + ,super + ,shift + super + }h
-  val={200,100,50,10}; bspc node @west -r -${val} || bspc node @east -r -${val}
+    val={200,100,50,10}; bspc node @west -r -${val} || bspc node @east -r -${val}
 super + r : {_,shift + ,super + ,shift + super + }l
-  val={200,100,50,10}; bspc node @west -r +${val} || bspc node @east -r +${val}
+    val={200,100,50,10}; bspc node @west -r +${val} || bspc node @east -r +${val}
 super + r : {_,shift + ,super + ,shift + super + }k
-  val={200,100,50,10}; bspc node @north -r -${val} || bspc node @south -r -${val}
+    val={200,100,50,10}; bspc node @north -r -${val} || bspc node @south -r -${val}
 super + r : {_,shift + ,super + ,shift + super + }j
-  val={200,100,50,10}; bspc node @north -r +${val} || bspc node @south -r +${val}
+    val={200,100,50,10}; bspc node @north -r +${val} || bspc node @south -r +${val}
 
-# focus
+# use mod1 key(alt) in bspwmrc config to subsititue the extra config
+# not supported by the latest bspwm {
 ~button1
 	bspc pointer -g focus
 
-# use mod1 key in bspwmrc config to subsitute super
-super + button{1-3}
+super + @button{1-3}
     bspc pointer -g {move,resize_side,resize_corner}
 
 super + @button{1-3}
     bspc pointer -u
+#}
 
 # Move cursor
 super + ctrl + m : {_,shift + ,shift + super + }{h,j,k,l}
