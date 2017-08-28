@@ -45,10 +45,10 @@ case $HOSTNAME in
 
             # enable or disable polybar on the second monitor
             if [ "$POLYBAR_RIGHT_ENABLE" = true ]; then
-                #bspc monitor $MONITOR_MAIN -d $ws1
-                #bspc monitor $MONITOR_RIGHT -d $ws0 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
-                bspc monitor $MONITOR_MAIN --reset-desktops $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
-                bspc monitor $MONITOR_RIGHT --reset-desktops $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
+                #bspc monitor $MONITOR_MAIN -d $ws1 $ws2
+                #bspc monitor $MONITOR_RIGHT -d $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9 $ws0
+                bspc monitor $MONITOR_MAIN -d $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
+                bspc monitor $MONITOR_RIGHT -d $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
             else
                 bspc monitor $MONITOR_MAIN -d  $ws1
                 bspc monitor $MONITOR_RIGHT -d $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9 $ws0

@@ -94,7 +94,7 @@
     tray-padding = 2
     tray-background = ${colors.background}
 
-    modules-left = cpu memory volume wifi 
+    modules-left = cpu memory volume wifi
     modules-right = date battery powermenu
 
 
@@ -106,7 +106,7 @@
     tray-padding = 2
     tray-background = ${colors.background}
 
-    modules-left = cpu memory volume wifi 
+    modules-left = cpu memory volume wifi
     modules-right = date battery
 
 
@@ -207,6 +207,19 @@
     ramp-signal-4 = 
     ramp-signal-foreground = ${colors.foreground-alt}
 
+
+[module/eth]
+    type = internal/network
+    interface = net0
+    interval = 3.0
+
+    format-connected-underline = #55aa55
+    format-connected-prefix = " "
+    format-connected-prefix-foreground = ${colors.foreground-alt}
+    label-connected = %local_ip%
+
+    format-disconnected =
+
 [module/volume]
     type = internal/volume
 
@@ -235,8 +248,8 @@
     bar-volume-empty-font = 2
     bar-volume-empty-foreground = ${colors.foreground-alt}
 
-
-[module/bspwm]
+;only show index
+[module/bspwm.index]
     type = internal/bspwm
 
     label-focused = %index%
@@ -255,7 +268,7 @@
     label-empty-foreground = ${colors.foreground-alt}
     label-empty-padding = 2
 
-[module/bspwm1]
+[module/bspwm]
     type = internal/bspwm
 
     ws-icon-0 = web;
