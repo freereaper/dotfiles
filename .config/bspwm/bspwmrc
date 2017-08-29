@@ -100,8 +100,11 @@ bspc rule -a Firefox desktop='^6' state=fullscreen focus=on  border=off
 bspc rule -a remmina desktop='^9'
 
 #use 'xprop | awk '/WM_CLASS/{print $4}' to print the prog name you clicks
-bspc rule -a P4v.bin desktop='^4' state=fullscreen
-bspc rule -a Sublime_text desktop='^5' state=fullscreen
+#use bspc rule -l to list the rules
+#use bspc rule -r to remove the rule, eg: bspc rule -r Bcompare
+bspc rule -a P4v.bin desktop='^3' state=fullscreen
+bspc rule -a Bcompare desktop='^4' state=fullscreen fllow=on focus=on border=off
+bspc rule -a Sublime_text desktop='^5' state=fullscreen follow=on border=off
 
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on

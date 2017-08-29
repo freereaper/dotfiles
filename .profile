@@ -108,3 +108,5 @@ export GTAGSLABEL=pygments
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
+
+export PATH="$HOME/.cargo/bin:$PATH"
