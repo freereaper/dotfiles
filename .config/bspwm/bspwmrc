@@ -16,7 +16,7 @@ sxhkd &
 #bspc monitor -d $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
 
 
-MONITOR_LIST=$(xrandr --listmonitors | sed '1 d' | awk 'NF>1{print $NF}')
+MONITOR_LIST=
 MON_NUM=$(bspc query -M | wc -l)
 HOSTNAME=`hostname`
 POLYBAR_RIGHT_ENABLE=true
@@ -32,6 +32,7 @@ export MONITOR_{MAIN,RIGHT}
 
 case $HOSTNAME in
     "T450s")
+        MONITOR_LIST=$(xrandr --listmonitors | sed '1 d' | awk 'NF>1{print $NF}')
         #TODO: maxium support two monitors
         if [ $MON_NUM -gt 1 ]; then
 
@@ -65,14 +66,22 @@ case $HOSTNAME in
 
         bspc config focused_border_color "#ac7311"
         bspc config normal_border_color  "#3F3E3B"
-
+        bspc config top_padding          15
         ;;
 
     "zhaoxin")
-        #TODO
+        #TODO fixed the monitor query
+        MONITOR_MAIN=HDMI-1
+        MONITOR_RIGHT=VGA-1
+
+        xrandr --output $MONITOR_RIGHT --right-of $MONITOR_MAIN
+
+        bspc monitor $MONITOR_MAIN -d $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
+        bspc monitor $MONITOR_RIGHT -d $ws0 $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7 $ws8 $ws9
+
         bspc config focused_border_color "#77dd77"
         bspc config normal_border_color  "#3F3E3B"
-
+        bspc config top_padding          20
         ;;
 esac
 
@@ -84,7 +93,6 @@ bspc config ignore_ewmh_focus   true
 bspc config initial_polarity    second_child
 bspc config presel_feedback_color        "#26262b"
 
-bspc config top_padding         15
 bspc config border_width        3
 bspc config window_gap          8
 
@@ -94,17 +102,17 @@ bspc config gapless_monocle      true
 bspc config history_aware_focus  true
 bspc config focus_follows_pointer true
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Google-chrome desktop='^7' state=floating focus=on border=off
-bspc rule -a Firefox desktop='^6' state=fullscreen focus=on  border=off
-bspc rule -a remmina desktop='^9'
+bspc rule -a Gimp  state=floating
+bspc rule -a Google-chrome state=floating
+bspc rule -a Firefox  state=floating
+bspc rule -a remmina state=floating
 
 #use 'xprop | awk '/WM_CLASS/{print $4}' to print the prog name you clicks
 #use bspc rule -l to list the rules
 #use bspc rule -r to remove the rule, eg: bspc rule -r Bcompare
-bspc rule -a P4v.bin desktop='^3' state=fullscreen
-bspc rule -a Bcompare desktop='^4' state=fullscreen fllow=on focus=on border=off
-bspc rule -a Sublime_text desktop='^5' state=fullscreen follow=on border=off
+bspc rule -a P4v.bin  state=floating
+bspc rule -a Bcompare state=floating
+bspc rule -a Sublime_text state=fullscreen
 
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on

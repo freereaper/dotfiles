@@ -44,6 +44,8 @@ compton --config ~/.dotfiles/.config/.compton.conf.t450s -b
 if [ $(hostname) = "zhaoxin" ]; then
     # keep the screen light
     xset -dpms
+    polybar main.$(hostname) &
+    polybar right.$(hostname) &
     (http_proxy="http://10.30.24.3:985" /opt/dropbox/dropboxd &)&
 elif [ $(hostname) = "T450s" ]; then
     #for mon in $MONITOR_LIST; do
@@ -54,7 +56,7 @@ elif [ $(hostname) = "T450s" ]; then
     polybar main.$(hostname) &
 
     if [ "$POLYBAR_RIGHT_ENABLE" = true ]; then
-        polybar right &
+        polybar right.$(hostname) &
     fi
 
     /opt/dropbox/dropboxd &

@@ -85,6 +85,7 @@
     ;scroll-up = bspwm-desknext
     ;scroll-down = bspwm-deskprev
 
+
 # used combined with "env MONITOR=$mon polybar $(hostname) &"
 [bar/main.T450s]
     inherit = bar/base
@@ -98,21 +99,37 @@
     modules-right = date battery powermenu
 
 
-[bar/main]
+[bar/main.zhaoxin]
     inherit = bar/base
-    monitor = ${env:MONITOR_MAIN:eDP1}
+    monitor = ${env:MONITOR_MAIN:HDMI-1}
+
+    font-0 = Fira Mono for Powerline:size=10;2
+    font-1 = FontAwesome:size=10;-2
+    font-2 = siji:pixelsize=10;1
 
     tray-position = right
     tray-padding = 2
     tray-background = ${colors.background}
 
-    modules-left = cpu memory volume wifi
+    modules-center = bspwm.zhaoxin
+    modules-left = cpu memory volume eth
     modules-right = date battery
 
 
-[bar/right]
+[bar/right.T450s]
     inherit= bar/base
     monitor = ${env:MONITOR_RIGHT}
+
+[bar/right.zhaoxin]
+    inherit= bar/base
+    monitor = ${env:MONITOR_RIGHT:VGA-1}
+
+    font-0 = Fira Mono for Powerline:size=10;0
+    font-1 = FontAwesome:size=10;-2
+    font-2 = Fira Mono for Powerline:pixelsize=10;1
+
+    modules-center = bspwm.zhaoxin
+
 
 [module/theme]
     format-background = ${colors.background}
@@ -210,7 +227,7 @@
 
 [module/eth]
     type = internal/network
-    interface = net0
+    interface = eth0
     interval = 3.0
 
     format-connected-underline = #55aa55
@@ -249,7 +266,7 @@
     bar-volume-empty-foreground = ${colors.foreground-alt}
 
 ;only show index
-[module/bspwm.index]
+[module/bspwm.zhaoxin]
     type = internal/bspwm
 
     label-focused = %index%
