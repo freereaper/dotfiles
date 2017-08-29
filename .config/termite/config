@@ -1,4 +1,4 @@
-[freereaper at T450s ijoptions]
+[options]
 scroll_on_output = false
 scroll_on_keystroke = true
 search_wrap = true
@@ -17,6 +17,8 @@ cursor_shape = block
 [colors]
 # hard contrast: background = #1d2021
 background = #282828
+# transparency with compton
+# background = rgba(63, 63, 63, 0.8)
 # background = #1d2021
 # soft contrast:
 # background = #000000
