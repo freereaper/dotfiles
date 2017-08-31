@@ -26,9 +26,10 @@ let s:settings.default_indent = 2
 let s:settings.max_column = 120
 let s:settings.autocomplete_method = 'ycm'
 let s:settings.enable_cursorcolumn = 0
-"let s:settings.colorscheme = 'Tomorrow-Night-Eighties'
-let s:settings.colorscheme = 'molokai'
-let s:settings.airtheme = 'jellybeans'
+let s:settings.colorscheme = 'solarized'
+let s:settings.airtheme = 'solarized'
+"let s:settings.colorscheme = 'molokai'
+"let s:settings.airtheme = 'jellybeans'
 
 " }}}
 

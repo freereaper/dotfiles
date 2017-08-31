@@ -133,9 +133,11 @@ function bootstrap-bspwm {
 # urxvt {{{
 
 function bootstrap-urxvt {
+    echo "copy $BASEDIR/urxvt/.Xresources  => $HOME/.Xresources"
     perl_ext=$BASEDIR/urxvt/perl-extensions
     cp -f $BASEDIR/urxvt/.Xresources ~/.Xresources
     perl -i -p -e "s!PATH_TO_PERL_EXT!$perl_ext!ig" ~/.Xresources
+    __symlink_rock "urxvt/.colors" ".colors"
 }
 
 # }}}
