@@ -1,23 +1,32 @@
 ! Run: `xrdb -merge ~/.Xresources` after modify this file
+#include ".colors/derp"
 
 ! font stuffs
-Xft.autohint: true
+Xft.autohint: false
+Xft.dpi: 96
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
 Xft.hinting: true
 Xft.antialias: true
 Xft.rgba: rgb
 
-Xcursor.theme: Pulse-Glass
-Xcursor.size:  22
+! Xcursor.theme: Pulse-Glass
+! Xcursor.size:  22
 
 
 URxvt.saveLines:1000000
 URxvt.geometry:100x30
 URxvt.depth:32
+URxvt*dynamicColors: on
+URxvt*borderLess: false
+URxvt*externalBorder: 0
+URxvt*internalBorder: 5
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+URxvt*underlineURLs: true
+
 ! aaaa indicates the transparency
 URxvt.background: rgba:0000/0000/0000/aaaa
-URxvt.foreground:white
 
 ! URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true
 ! URxvt.boldFont:xft:Ubuntu Mono derivative Powerline:bold:pixelsize=16:antialias=true:hinting=true
@@ -83,6 +92,8 @@ URxvt.keysym.C-9: \033[27;5;57~
 URxvt.keysym.C-0: \033[27;5;48~
 URxvt*keysym.C-Tab: \033[27;5;9~
 
+ssh-askpass*background: #000000
+
 ! make letters stay closer to each other, work well with font Dejavu Sans Mono for Powerline
 ! at pixelsize=12 or size=9
 ! Note: letterSpace:-1 will fix the folk icon of vim-airline but then the spacing is
@@ -94,19 +105,13 @@ URxvt.letterSpace: -1
 ! black
 ! URxvt.color0:  #000000
 ! #1C1C1C: similar to ctermfg=234 of vim
-URxvt.color0:  #1C1C1C
-URxvt.color8:  #555753
+! URxvt.color0:  #1C1C1C
+! URxvt.color8:  #555753
 
 ! yellow
-URxvt.color3:  #dd5608
-URxvt.color11: #dd6a1c
+! URxvt.color3:  #dd5608
+! URxvt.color11: #dd6a1c
 
 ! blue
-URxvt.color4:  RoyalBlue
-URxvt.color12: RoyalBlue
-
-URxvt.cursorBlink: 0
-URxvt.cursorUnderline: 0
-
-ssh-askpass*background: #000000
-
+! URxvt.color4:  RoyalBlue
+! URxvt.color12: RoyalBlue
