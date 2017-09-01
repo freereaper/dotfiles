@@ -5,8 +5,8 @@
 Xft.autohint: true
 Xft.dpi: 96
 Xft.lcdfilter:  lcddefault
-!Xft.hintstyle:  hintfull
-Xft.hintstyle:  hintslight
+Xft.hintstyle:  hintfull
+! Xft.hintstyle:  hintslight
 Xft.hinting: true
 Xft.antialias: true
 Xft.rgba: rgb
@@ -16,7 +16,7 @@ Xft.rgba: rgb
 
 
 URxvt.saveLines:1000000
-URxvt.geometry:100x30
+URxvt.geometry:80x28
 URxvt.depth:32
 URxvt*dynamicColors: on
 URxvt*borderLess: false
@@ -27,7 +27,8 @@ URxvt.cursorUnderline: true
 URxvt*underlineURLs: true
 
 ! aaaa indicates the transparency
-! URxvt.background: rgba:0000/0000/0000/aaaa
+! URxvt*.background: rgba:0000/0000/0000/aaaa
+! URxvt*.foreground: #F2F1F0
 
 ! URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true
 ! URxvt.boldFont:xft:Ubuntu Mono derivative Powerline:bold:pixelsize=16:antialias=true:hinting=true

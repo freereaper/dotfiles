@@ -1,36 +1,41 @@
+!AMBIANCE
+URxvt*.background: rgba:0000/0000/0000/aaaa
+URxvt*.foreground: #F2F1F0
+
+
 ! special
-URxvt*.foreground:   #ffffff
-URxvt*.background:   rgba:0000/0000/0000/aaaa
-URxvt*.cursorColor:  #ffffff
+*foreground:   #ffffff
+*background:   #000000
+*cursorColor:  #ffffff
 
 ! black
-URxvt*.color0:       #111111
-URxvt*.color8:       #666666
+*color0:       #111111
+*color8:       #666666
 
 ! red
-URxvt*.color1:       #d36265
-URxvt*.color9:       #ef8171
+*color1:       #d36265
+*color9:       #ef8171
 
 ! green
-URxvt*.color2:       #aece91
-URxvt*.color10:      #cfefb3
+*color2:       #aece91
+*color10:      #cfefb3
 
 ! yellow
-URxvt*.color3:       #e7e18c
-URxvt*.color11:      #fff796
+*color3:       #e7e18c
+*color11:      #fff796
 
 ! blue
-URxvt*.color4:       #5297cf
-URxvt*.color12:      #74b8ef
+*color4:       #5297cf
+*color12:      #74b8ef
 
 ! magenta
-URxvt*.color5:       #963c59
-URxvt*.color13:      #b85e7b
+*color5:       #963c59
+*color13:      #b85e7b
 
 ! cyan
-URxvt*.color6:       #5e7175
-URxvt*.color14: #a3babf
+*color6:       #5e7175
+*color14: #a3babf
 
 ! white
-URxvt*.color7:       #bebebe
-URxvt*.color15:      #ffffff
+*color7:       #bebebe
+*color15:      #ffffff

@@ -236,6 +236,7 @@ __symlink ".bashrc"
 __symlink ".gitignore_global"
 __symlink ".npmrc"
 __symlink ".ctags"
+__symlink ".LS_COLORS"
 #-------------------------------------------------------------------------------
 
 

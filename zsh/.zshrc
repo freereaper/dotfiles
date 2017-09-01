@@ -216,3 +216,6 @@ export FZF_DEFAULT_OPTS="
 
 # Less setup : http://unix.stackexchange.com/questions/119/colors-in-man-pages
 [ -f ~/.LESS_TERMCAP ] && source ~/.LESS_TERMCAP
+
+# ls colors set
+[ -f ~/.LS_COLORS ] && eval $( dircolors -b ~/.LS_COLORS)
