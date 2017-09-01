@@ -2,10 +2,11 @@
 #include ".colors/derp"
 
 ! font stuffs
-Xft.autohint: false
+Xft.autohint: true
 Xft.dpi: 96
 Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintfull
+!Xft.hintstyle:  hintfull
+Xft.hintstyle:  hintslight
 Xft.hinting: true
 Xft.antialias: true
 Xft.rgba: rgb
@@ -20,13 +21,13 @@ URxvt.depth:32
 URxvt*dynamicColors: on
 URxvt*borderLess: false
 URxvt*externalBorder: 0
-URxvt*internalBorder: 5
+URxvt*internalBorder: 3
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: true
 URxvt*underlineURLs: true
 
 ! aaaa indicates the transparency
-URxvt.background: rgba:0000/0000/0000/aaaa
+! URxvt.background: rgba:0000/0000/0000/aaaa
 
 ! URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true
 ! URxvt.boldFont:xft:Ubuntu Mono derivative Powerline:bold:pixelsize=16:antialias=true:hinting=true
