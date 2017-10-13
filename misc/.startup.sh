@@ -46,7 +46,7 @@ if [ $(hostname) = "zhaoxin" ]; then
     xset -dpms
     polybar main.$(hostname) &
     polybar right.$(hostname) &
-    (http_proxy="http://10.30.24.3:985" /opt/dropbox/dropboxd &)&
+    (http_proxy="http://10.30.24.33:985" /opt/dropbox/dropboxd &)&
 elif [ $(hostname) = "T450s" ]; then
     #for mon in $MONITOR_LIST; do
     #    echo "Lauching on monitor $mon"

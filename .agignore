@@ -22,6 +22,7 @@
 *.a
 **.cmd
 **.doc
+dump
 tags
 TAGS
 .git/
